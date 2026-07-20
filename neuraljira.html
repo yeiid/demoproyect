@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuralJIRA — NeuralJira Portfolio</title>
+<meta name="description" content="Landing page de NeuralJira, agencia de desarrollo de software y productos SaaS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">$ neuraljira.tech</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html">Portfolio</a></li>
+    <li><a href="#about">Nosotros</a></li>
+    <li><a href="#services">Servicios</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span></span> NeuralJIRA · Agencia de Software</div>
+    <h1>Desarrollo de software<br><em>que resuelve</em><br>problemas reales</h1>
+    <p class="hero-sub">Agencia de desarrollo de software especializada en SaaS, mapas geoespaciales, 3D y soluciones B2B para el mercado colombiano.</p>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="terminal-title">~/neuraljira · agencia</span>
+      </div>
+      <div class="terminal-body" id="terminal-output"></div>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="https://neuraljira.tech" class="btn-primary" target="_blank">Visitar neuraljira.tech</a>
+      <a href="index.html" class="btn-ghost">Ver proyectos</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="about">
+  <div class="container">
+    <div class="section-label">// nosotros</div>
+    <h2>Quienes<br>somos</h2>
+    <p class="section-lead">NeuralJira es una agencia de desarrollo de software basada en Colombia. Construimos productos SaaS y soluciones a medida para negocios.</p>
+
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-label">Proyectos</div>
+        <div class="metric-val">8 <span>construidos</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Stack</div>
+        <div class="metric-val">6+ <span>tecnologias</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Ubicacion</div>
+        <div class="metric-val">Colombia <span>remoto</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Especialidad</div>
+        <div class="metric-val">SaaS <span>B2B</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="services">
+  <div class="container">
+    <div class="section-label">// servicios</div>
+    <h2>Que<br>hacemos</h2>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <h4>🚀 Desarrollo SaaS</h4>
+        <p>Construimos productos SaaS de cero. Multi-tenant, auth, pagos, dashboards. De la idea al primer cliente.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🗺️ Mapas Geoespaciales</h4>
+        <p>Soluciones con PostGIS, Martin, MapLibre. Datos catastrales, monitoreo, visualizacion 3D de mapas.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🏢 Visualizacion 3D</h4>
+        <p>Three.js, React Three Fiber, modelos 3D interactivos. Bodegas, edificios, productos visualizados en 3D.</p>
+      </div>
+      <div class="feat-card">
+        <h4>📱 Apps Web y Movil</h4>
+        <p>Interfaces modernas con Astro, React, Tailwind. Mobile-first, performantes, escalables.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">$ neuraljira.tech — v1.0.0</div>
+  <p>NeuralJIRA · neuraljira.tech · Colombia · 2026</p>
+</footer>
+
+<script>
+const lines = [
+  { type: 'prompt', text: 'whoami' },
+  { type: 'out',    text: 'NeuralJira — agencia de software · Colombia' },
+  { type: 'prompt', text: 'ls ./servicios/' },
+  { type: 'out',    text: 'saas/  mapas-geoespaciales/  3d/  apps-web/' },
+  { type: 'prompt', text: 'cat mission.txt' },
+  { type: 'info',   text: 'Construir software que resuelve problemas reales' },
+  { type: 'prompt', text: 'echo "De la idea al primer cliente"' },
+  { type: 'green',  text: '✓ NeuralJira listo para trabajar contigo' },
+];
+const output = document.getElementById('terminal-output');
+let lineIdx = 0, charIdx = 0, currentEl = null;
+function colorClass(t) { return {prompt:'t-prompt',out:'t-out',info:'t-info',green:'t-out'}[t]||'t-cmd'; }
+function prefix(t) { return t==='prompt'?'$ ':'  '; }
+function typeNext() {
+  if(lineIdx>=lines.length){const c=document.createElement('span');c.className='terminal-line t-prompt';c.innerHTML='$ <span class="cursor"></span>';output.appendChild(c);return;}
+  const l=lines[lineIdx];
+  if(charIdx===0){currentEl=document.createElement('span');currentEl.className='terminal-line '+colorClass(l.type);currentEl.textContent=prefix(l.type);output.appendChild(currentEl);}
+  if(charIdx<l.text.length){currentEl.textContent=prefix(l.type)+l.text.slice(0,charIdx+1);charIdx++;setTimeout(typeNext,l.type==='prompt'?42:18);}
+  else{lineIdx++;charIdx=0;setTimeout(typeNext,l.type==='prompt'?320:180);}
+}
+window.addEventListener('load',()=>setTimeout(typeNext,800));
+const navToggle=document.getElementById('nav-toggle'),navLinks=document.getElementById('nav-links');
+if(navToggle&&navLinks){navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('mobile-open');navToggle.classList.toggle('open',o);});navLinks.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{navLinks.classList.remove('mobile-open');navToggle.classList.remove('open');});});}
+</script>
+</body>
+</html>

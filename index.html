@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuralJira — Portfolio de Proyectos</title>
+<meta name="description" content="8 proyectos construidos por NeuralJira. Soluciones reales: inventarios 3D, monitoreo FTTH, mapas geoespaciales, gestión de gimnasios y más.">
+<meta name="author" content="NeuralJira">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">$ neuraljira.tech</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#stats">Stack</a></li>
+    <li><a href="brand-guide.html">Brand Guide</a></li>
+    <li><a href="business-plan.html">Business Plan</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span></span> NeuralJira · Portfolio 2026</div>
+    <h1>8 proyectos<br><em>construidos</em><br>desde Colombia</h1>
+    <p class="hero-sub">Soluciones reales para problemas reales. Cada proyecto es un producto potencial de negocio — desde inventarios 3D hasta monitoreo de fibra óptica.</p>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="terminal-title">~/portfolio · neuraljira</span>
+      </div>
+      <div class="terminal-body" id="terminal-output"></div>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="#proyectos" class="btn-primary">Ver proyectos</a>
+      <a href="#contacto" class="btn-ghost">Contactar</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROYECTOS -->
+<section id="proyectos">
+  <div class="container">
+    <div class="section-label">// portfolio · 8 proyectos</div>
+    <h2>Todos los<br>proyectos</h2>
+    <p class="section-lead">Cada proyecto resuelve un problema real. Haz clic para ver detalles, stack tecnológico y estado de desarrollo.</p>
+
+    <div class="proj-grid">
+
+      <!-- InventarioADN -->
+      <a href="inventario-adn.html" class="proj-card">
+        <span class="proj-icon">📦</span>
+        <div class="proj-name">InventarioADN</div>
+        <div class="proj-desc">Sistema integral de gestión de inventarios con bodega 3D interactiva. Multi-tenant SaaS para bodegas y distribuidoras.</div>
+        <div class="proj-tags">
+          <span class="tag green">SaaS</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag blue">Three.js</span>
+          <span class="tag purple">Multi-Tenant</span>
+        </div>
+      </a>
+
+      <!-- FTTH Mapper -->
+      <a href="ftth-mapper.html" class="proj-card">
+        <span class="proj-icon">📡</span>
+        <div class="proj-name">FTTH Mapper</div>
+        <div class="proj-desc">Monitoreo y diseño de planta externa de fibra óptica con mapa interactivo, GPS y diagrama de empalmes.</div>
+        <div class="proj-tags">
+          <span class="tag green">SaaS</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag blue">MapLibre</span>
+          <span class="tag">PostGIS</span>
+        </div>
+      </a>
+
+      <!-- Map Engine -->
+      <a href="map-engine.html" class="proj-card">
+        <span class="proj-icon">🗺️</span>
+        <div class="proj-name">Map Engine</div>
+        <div class="proj-desc">Motor de mapas geoespaciales como servicio. PostGIS + Martin + FastAPI para datos catastrales de alto rendimiento.</div>
+        <div class="proj-tags">
+          <span class="tag green">SaaS</span>
+          <span class="tag">PostGIS</span>
+          <span class="tag blue">Martin</span>
+          <span class="tag">FastAPI</span>
+        </div>
+      </a>
+
+      <!-- GymTrack -->
+      <a href="gymtrack.html" class="proj-card">
+        <span class="proj-icon">🏋️</span>
+        <div class="proj-name">GymTrack SaaS</div>
+        <div class="proj-desc">Sistema de gestión de gimnasios con licenciamiento, panel admin y servidor de licencias en Go.</div>
+        <div class="proj-tags">
+          <span class="tag green">SaaS</span>
+          <span class="tag">Flask</span>
+          <span class="tag blue">Go</span>
+          <span class="tag">SQLite</span>
+        </div>
+      </a>
+
+      <!-- FabbyTRACK -->
+      <a href="fabbytrack.html" class="proj-card">
+        <span class="proj-icon">💪</span>
+        <div class="proj-name">FabbyTRACK</div>
+        <div class="proj-desc">App de fitness y nutrición con planes personalizados, seguimiento de medidas y dashboard de progreso.</div>
+        <div class="proj-tags">
+          <span class="tag">Astro</span>
+          <span class="tag blue">SQLite</span>
+          <span class="tag purple">En desarrollo</span>
+        </div>
+      </a>
+
+      <!-- Constructor 3D -->
+      <a href="constructor-3d.html" class="proj-card">
+        <span class="proj-icon">🏢</span>
+        <div class="proj-name">Constructor 3D</div>
+        <div class="proj-desc">Editor interactivo de edificios 3D realistas. Exporta a OBJ, GeoJSON y sentencias SQL para PostGIS.</div>
+        <div class="proj-tags">
+          <span class="tag">Three.js</span>
+          <span class="tag blue">MapLibre</span>
+          <span class="tag">HTML</span>
+        </div>
+      </a>
+
+      <!-- NeuralJIRA -->
+      <a href="neuraljira.html" class="proj-card">
+        <span class="proj-icon">⚡</span>
+        <div class="proj-name">NeuralJIRA</div>
+        <div class="proj-desc">Landing page de la agencia de desarrollo de software. Diseño premium dark mode con Astro.</div>
+        <div class="proj-tags">
+          <span class="tag">Astro</span>
+          <span class="tag blue">Landing</span>
+          <span class="tag">CSS</span>
+        </div>
+      </a>
+
+      <!-- Academia Web -->
+      <a href="academia-web.html" class="proj-card">
+        <span class="proj-icon">🎓</span>
+        <div class="proj-name">Academia Web</div>
+        <div class="proj-desc">Plataforma de cursos online con dashboard, curso de Git Master y modo demo sin base de datos.</div>
+        <div class="proj-tags">
+          <span class="tag">Astro</span>
+          <span class="tag blue">Docker</span>
+          <span class="tag green">E-learning</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- STACK -->
+<section id="stats">
+  <div class="container">
+    <div class="section-label">// stack · tecnologias</div>
+    <h2>Stack Used<br>across projects</h2>
+    <p class="section-lead">Todas las tecnologias que hemos utilizado en nuestros proyectos. Todo open source, todo escalable.</p>
+
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-label">Frontend</div>
+        <div class="metric-val" style="font-size:1rem;">Astro · React · Three.js</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Backend</div>
+        <div class="metric-val" style="font-size:1rem;">FastAPI · Flask · Go</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Base de Datos</div>
+        <div class="metric-val" style="font-size:1rem;">PostgreSQL · PostGIS · SQLite</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Infra</div>
+        <div class="metric-val" style="font-size:1rem;">Docker · Nginx · Dokploy</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Mapas</div>
+        <div class="metric-val" style="font-size:1rem;">MapLibre · Martin · PostGIS</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">3D</div>
+        <div class="metric-val" style="font-size:1rem;">Three.js · R3F · OBJ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="container" style="text-align:center;">
+    <div class="section-label">// contacto</div>
+    <h2>¿Trabajamos<br>juntos?</h2>
+    <p class="section-lead" style="margin:0 auto 2rem;">NeuralJira es una agencia de desarrollo de software y productos SaaS. Si tienes un problema que resolver, hablemos.</p>
+    <div class="hero-ctas">
+      <a href="https://neuraljira.tech" class="btn-primary" target="_blank"> neuraljira.tech</a>
+      <a href="mailto:contacto@neuraljira.tech" class="btn-ghost">contacto@neuraljira.tech</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">$ neuraljira.tech — v1.0.0</div>
+  <p>NeuralJira · neuraljira.tech · Colombia · 2026</p>
+</footer>
+
+<script>
+// ── TERMINAL ANIMATION ──
+const lines = [
+  { type: 'prompt', text: 'whoami' },
+  { type: 'out',    text: 'neuraljira.tech · colombia' },
+  { type: 'prompt', text: 'ls ./proyectos/' },
+  { type: 'out',    text: 'inventario-adn/  ftth-mapper/  map-engine/  gymtrack/' },
+  { type: 'out',    text: 'fabbytrack/  constructor-3d/  neuraljira/  academia-web/' },
+  { type: 'prompt', text: 'echo "8 proyectos · 4 stacks · 1 marca"' },
+  { type: 'info',   text: '8 proyectos · 4 stacks · 1 marca' },
+  { type: 'prompt', text: 'python start.py --mode=portfolio' },
+  { type: 'green',  text: '✓ Listo. Explora cada proyecto.' },
+];
+
+const output = document.getElementById('terminal-output');
+let lineIdx = 0;
+let charIdx = 0;
+let currentEl = null;
+
+function colorClass(type) {
+  const map = { prompt: 't-prompt', out: 't-out', info: 't-info', green: 't-out', err: 't-err' };
+  return map[type] || 't-cmd';
+}
+
+function prefix(type) {
+  return type === 'prompt' ? '$ ' : '  ';
+}
+
+function typeNext() {
+  if (lineIdx >= lines.length) {
+    const cur = document.createElement('span');
+    cur.className = 'terminal-line t-prompt';
+    cur.innerHTML = '$ <span class="cursor"></span>';
+    output.appendChild(cur);
+    return;
+  }
+  const line = lines[lineIdx];
+  if (charIdx === 0) {
+    currentEl = document.createElement('span');
+    currentEl.className = 'terminal-line ' + colorClass(line.type);
+    currentEl.textContent = prefix(line.type);
+    output.appendChild(currentEl);
+  }
+  const fullText = prefix(line.type) + line.text;
+  if (charIdx < line.text.length) {
+    currentEl.textContent = prefix(line.type) + line.text.slice(0, charIdx + 1);
+    charIdx++;
+    const delay = line.type === 'prompt' ? 42 : 18;
+    setTimeout(typeNext, delay);
+  } else {
+    lineIdx++;
+    charIdx = 0;
+    const pause = line.type === 'prompt' ? 320 : 180;
+    setTimeout(typeNext, pause);
+  }
+}
+
+window.addEventListener('load', () => setTimeout(typeNext, 800));
+
+// ── HAMBURGER ──
+const navToggle = document.getElementById('nav-toggle');
+const navLinks  = document.getElementById('nav-links');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('mobile-open');
+    navToggle.classList.toggle('open', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('mobile-open');
+      navToggle.classList.remove('open');
+    });
+  });
+}
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.proj-card, .metric').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity .4s ease, transform .4s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>

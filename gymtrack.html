@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GymTrack SaaS — NeuralJira Portfolio</title>
+<meta name="description" content="Sistema de gestión de gimnasios con licenciamiento, panel admin y servidor de licencias en Go.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">$ neuraljira.tech</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html">Portfolio</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#license">Licenciamiento</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span></span> GymTrack · SaaS Fitness</div>
+    <h1>Gestion de <em>gimnasios</em> con licenciamiento seguro</h1>
+    <p class="hero-sub">Sistema integral para gimnasios. App de escritorio en Python + servidor de licencias en Go con firmas Ed25519 para validacion offline.</p>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="terminal-title">~/gymtrack · server + desktop</span>
+      </div>
+      <div class="terminal-body" id="terminal-output"></div>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="index.html" class="btn-ghost">Volver al portfolio</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="features">
+  <div class="container">
+    <div class="section-label">// features</div>
+    <h2>Que incluye<br>GymTrack</h2>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <h4>🏋️ Gestion de Miembros</h4>
+        <p>CRUD completo de miembros, membresias, asistencia y pagos. Interfaz intuitiva y responsiva.</p>
+      </div>
+      <div class="feat-card">
+        <h4>📊 Dashboard y Reportes</h4>
+        <p>Estadisticas de asistencia, pagos pendientes, metricas del gimnasio. Graficos interactivos.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🔐 Licenciamiento Ed25519</h4>
+        <p>Servidor Go con firmas criptograficas. Validacion offline segura, licencias lifetime, trials de 7 dias.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🖥️ Panel Web Admin</h4>
+        <p>Dashboard con metricas en vivo, control de clientes, generador de llaves, revocacion en 1 clic.</p>
+      </div>
+      <div class="feat-card">
+        <h4>📦 Empaquetado PyInstaller</h4>
+        <p>Ejecutable standalone sin dependencias. Carpetas o binario unico para distribucion facil.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🔄 CLI de Terminal</h4>
+        <p>Gestion administrativa desde terminal. Listar, revocar, activar licencias con flags rapidos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="stack">
+  <div class="container">
+    <div class="section-label">// stack</div>
+    <h2>Tecnologias</h2>
+
+    <table class="stack-table">
+      <thead><tr><th>Componente</th><th>Tecnologia</th><th>Detalle</th></tr></thead>
+      <tbody>
+        <tr><td><span class="stack-name">Desktop App</span></td><td class="stack-desc">Python 3.8+ / Flask / SQLite</td><td><span class="stack-badge free">PyInstaller</span></td></tr>
+        <tr><td><span class="stack-name">License Server</span></td><td class="stack-desc">Go 1.24 / GORM / Ed25519</td><td><span class="stack-badge free">Alta disponibilidad</span></td></tr>
+        <tr><td><span class="stack-name">Panel Web</span></td><td class="stack-desc">HTML/CSS/JS embebido en Go</td><td><span class="stack-badge free">go:embed</span></td></tr>
+        <tr><td><span class="stack-name">Base de Datos</span></td><td class="stack-desc">SQLite 3 (server) + SQLite (app)</td><td><span class="stack-badge free">Portabilidad</span></td></tr>
+        <tr><td><span class="stack-name">Deploy</span></td><td class="stack-desc">Docker / Fly.io</td><td><span class="stack-badge free">Cloud</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="license">
+  <div class="container">
+    <div class="section-label">// licenciamiento</div>
+    <h2>Sistema de<br>licencias</h2>
+    <p class="section-lead">Flujo hibrido: registro automatico en TRIAL de 7 dias. Activacion con llaves de un solo uso para estado ACTIVE de por vida.</p>
+
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-label">Trial</div>
+        <div class="metric-val">7 <span>dias gratis</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Activacion</div>
+        <div class="metric-val">Lifetime <span>un solo pago</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Firma</div>
+        <div class="metric-val">Ed25519 <span>criptografia</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Validacion</div>
+        <div class="metric-val">Offline <span>sin servidor</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">$ neuraljira.tech — v1.0.0</div>
+  <p>GymTrack SaaS · NeuralJira · Colombia · 2026</p>
+</footer>
+
+<script>
+const lines = [
+  { type: 'prompt', text: 'go run cmd/server/main.go -cli' },
+  { type: 'out',    text: '--- 🛠️  SERVER ADMIN CLI ---' },
+  { type: 'out',    text: '1. List Licenses    2. Revoke License' },
+  { type: 'out',    text: '3. Activate License 4. Generate Key' },
+  { type: 'prompt', text: 'GET /api/check?hwid=gym-bogota-001' },
+  { type: 'info',   text: '{ "status": "ACTIVE", "expires": null }' },
+  { type: 'prompt', text: 'echo "GymTrack Server corriendo en :8080"' },
+  { type: 'green',  text: '✓ License server activo con Ed25519' },
+];
+const output = document.getElementById('terminal-output');
+let lineIdx = 0, charIdx = 0, currentEl = null;
+function colorClass(t) { return {prompt:'t-prompt',out:'t-out',info:'t-info',green:'t-out'}[t]||'t-cmd'; }
+function prefix(t) { return t==='prompt'?'$ ':'  '; }
+function typeNext() {
+  if(lineIdx>=lines.length){const c=document.createElement('span');c.className='terminal-line t-prompt';c.innerHTML='$ <span class="cursor"></span>';output.appendChild(c);return;}
+  const l=lines[lineIdx];
+  if(charIdx===0){currentEl=document.createElement('span');currentEl.className='terminal-line '+colorClass(l.type);currentEl.textContent=prefix(l.type);output.appendChild(currentEl);}
+  if(charIdx<l.text.length){currentEl.textContent=prefix(l.type)+l.text.slice(0,charIdx+1);charIdx++;setTimeout(typeNext,l.type==='prompt'?42:18);}
+  else{lineIdx++;charIdx=0;setTimeout(typeNext,l.type==='prompt'?320:180);}
+}
+window.addEventListener('load',()=>setTimeout(typeNext,800));
+const navToggle=document.getElementById('nav-toggle'),navLinks=document.getElementById('nav-links');
+if(navToggle&&navLinks){navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('mobile-open');navToggle.classList.toggle('open',o);});navLinks.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{navLinks.classList.remove('mobile-open');navToggle.classList.remove('open');});});}
+</script>
+</body>
+</html>

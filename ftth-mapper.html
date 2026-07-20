@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FTTH Mapper — NeuralJira Portfolio</title>
+<meta name="description" content="Monitoreo y diseño de planta externa FTTH con mapa interactivo, GPS y diagrama de empalmes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">$ neuraljira.tech</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html">Portfolio</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#stack">Stack</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span></span> FTTH Mapper · SaaS Telecom</div>
+    <h1>Monitoreo de <em>fibra optica</em> con mapa interactivo</h1>
+    <p class="hero-sub">Sistema completo para diseno y monitoreo de planta externa FTTH. Trazado de cables, nodos, GPS en tiempo real y diagrama de empalmes.</p>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="terminal-title">~/ftth-mapper · docker</span>
+      </div>
+      <div class="terminal-body" id="terminal-output"></div>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="index.html" class="btn-ghost">Volver al portfolio</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="features">
+  <div class="container">
+    <div class="section-label">// features</div>
+    <h2>Funcionalidades<br>principales</h2>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <h4>📡 Mapa Interactivo</h4>
+        <p>Mapa completo con MapLibre GL. Visualizacion de nodos OLT, ODF, muflas, NAPs y clientes en tiempo real.</p>
+      </div>
+      <div class="feat-card">
+        <h4>📍 GPS y Ubicacion</h4>
+        <p>GeolocateControl integrado. Trazado de cables desde tu posicion GPS actual con marcador animado.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🔗 Diagrama de Empalmes</h4>
+        <p>Visualizacion de conexiones con ReactFlow. Splices persistidos, reconexion automatica entre sesiones.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🖥️ Gestion OLT/ODF</h4>
+        <p>Vista de chassis con puertos reales. Panel ODF con rutas conectadas y metricas de uso.</p>
+      </div>
+      <div class="feat-card">
+        <h4>📱 Mobile Toolbar</h4>
+        <p>Toolbar responsivo optimizado para moviles. 4 botones compactos: Lugar, OLT, Cable, Menu.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🔐 Auth JWT</h4>
+        <p>Autenticacion completa con JWT. Roles, proteccion de endpoints, panel de administracion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="stack">
+  <div class="container">
+    <div class="section-label">// stack</div>
+    <h2>Tecnologias</h2>
+
+    <table class="stack-table">
+      <thead><tr><th>Capa</th><th>Tecnologia</th><th>Detalle</th></tr></thead>
+      <tbody>
+        <tr><td><span class="stack-name">Frontend</span></td><td class="stack-desc">Astro + React + MapLibre GL</td><td><span class="stack-badge free">SPA</span></td></tr>
+        <tr><td><span class="stack-name">Diagramas</span></td><td class="stack-desc">ReactFlow</td><td><span class="stack-badge free">Open Source</span></td></tr>
+        <tr><td><span class="stack-name">Backend</span></td><td class="stack-desc">Python + FastAPI</td><td><span class="stack-badge free">REST API</span></td></tr>
+        <tr><td><span class="stack-name">Base de Datos</span></td><td class="stack-desc">PostgreSQL 15 + PostGIS</td><td><span class="stack-badge free">Geoespacial</span></td></tr>
+        <tr><td><span class="stack-name">Mapa Base</span></td><td class="stack-desc">map.neuraljira.tech (Map Engine)</td><td><span class="stack-badge free">Externo</span></td></tr>
+        <tr><td><span class="stack-name">Infra</span></td><td class="stack-desc">Docker Compose + Nginx</td><td><span class="stack-badge free">3 contenedores</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">$ neuraljira.tech — v1.0.0</div>
+  <p>FTTH Mapper · NeuralJira · Colombia · 2026</p>
+</footer>
+
+<script>
+const lines = [
+  { type: 'prompt', text: 'docker compose up -d --build' },
+  { type: 'out',    text: 'monitoreo-db-1    ... done' },
+  { type: 'out',    text: 'monitoreo-api-1   ... done' },
+  { type: 'out',    text: 'monitoreo-web-1   ... done' },
+  { type: 'prompt', text: 'curl http://localhost:8000/api/v1/nodes | jq .total' },
+  { type: 'info',   text: '147 nodos activos en la red' },
+  { type: 'prompt', text: 'echo "FTTH Mapper listo en :80"' },
+  { type: 'green',  text: '✓ Sistema de monitoreo FTTH corriendo' },
+];
+const output = document.getElementById('terminal-output');
+let lineIdx = 0, charIdx = 0, currentEl = null;
+function colorClass(t) { return {prompt:'t-prompt',out:'t-out',info:'t-info',green:'t-out'}[t]||'t-cmd'; }
+function prefix(t) { return t==='prompt'?'$ ':'  '; }
+function typeNext() {
+  if(lineIdx>=lines.length){const c=document.createElement('span');c.className='terminal-line t-prompt';c.innerHTML='$ <span class="cursor"></span>';output.appendChild(c);return;}
+  const l=lines[lineIdx];
+  if(charIdx===0){currentEl=document.createElement('span');currentEl.className='terminal-line '+colorClass(l.type);currentEl.textContent=prefix(l.type);output.appendChild(currentEl);}
+  if(charIdx<l.text.length){currentEl.textContent=prefix(l.type)+l.text.slice(0,charIdx+1);charIdx++;setTimeout(typeNext,l.type==='prompt'?42:18);}
+  else{lineIdx++;charIdx=0;setTimeout(typeNext,l.type==='prompt'?320:180);}
+}
+window.addEventListener('load',()=>setTimeout(typeNext,800));
+const navToggle=document.getElementById('nav-toggle'),navLinks=document.getElementById('nav-links');
+if(navToggle&&navLinks){navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('mobile-open');navToggle.classList.toggle('open',o);});navLinks.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{navLinks.classList.remove('mobile-open');navToggle.classList.remove('open');});});}
+</script>
+</body>
+</html>

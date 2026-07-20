@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuralJira Brand Guide — Design System</title>
+<meta name="description" content="Guia de marca y design system de NeuralJira. Colores, tipografia, componentes y estilo visual.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.25rem;
+  }
+  .color-card {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .color-swatch {
+    height: 120px;
+    display: flex;
+    align-items: flex-end;
+    padding: .8rem;
+  }
+  .color-info {
+    padding: 1rem;
+    background: var(--panel);
+  }
+  .color-name {
+    font-family: var(--font-mono);
+    font-size: .8rem;
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: .3rem;
+  }
+  .color-hex {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    color: var(--muted);
+  }
+  .color-var {
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    color: var(--accent);
+    margin-top: .3rem;
+  }
+
+  .type-scale {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .type-label {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: var(--muted);
+    min-width: 120px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .type-sample { color: var(--white); }
+
+  .component-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .comp-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+  .comp-label {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: var(--accent);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .spacing-demo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+  .space-block {
+    background: var(--accent);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: .65rem;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .code-block {
+    background: var(--deep);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: .82rem;
+    line-height: 1.8;
+    overflow-x: auto;
+    color: var(--text);
+  }
+  .code-block .kw { color: var(--accent); }
+  .code-block .str { color: var(--green); }
+  .code-block .cmt { color: var(--muted); }
+  .code-block .fn { color: var(--electric); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">$ neuraljira.tech</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html">Portfolio</a></li>
+    <li><a href="#colores">Colores</a></li>
+    <li><a href="#tipografia">Tipografia</a></li>
+    <li><a href="#componentes">Componentes</a></li>
+    <li><a href="#codigo">Codigo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span></span> Brand Guide · v1.0</div>
+    <h1>NeuralJira<br><em>Design System</em></h1>
+    <p class="hero-sub">Guia visual y tecnica del design system de NeuralJira. Colores, tipografia, componentes y convenciones para todos los proyectos.</p>
+    <div class="hero-ctas">
+      <a href="#colores" class="btn-primary">Ver colores</a>
+      <a href="#codigo" class="btn-ghost">Ver codigo</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- COLORES -->
+<section id="colores">
+  <div class="container">
+    <div class="section-label">// paleta de colores</div>
+    <h2>Colores de<br>marca</h2>
+    <p class="section-lead">Paleta oscura con acentos naranja y azul electrico. Diseñada para interfaces modernas con alto contraste.</p>
+
+    <h3 style="color:var(--white);font-size:1.1rem;margin-bottom:1.5rem;">Base</h3>
+    <div class="color-grid" style="margin-bottom:3rem;">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#0B0F1A;"></div>
+        <div class="color-info">
+          <div class="color-name">Ink</div>
+          <div class="color-hex">#0B0F1A</div>
+          <div class="color-var">--ink</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#111827;"></div>
+        <div class="color-info">
+          <div class="color-name">Deep</div>
+          <div class="color-hex">#111827</div>
+          <div class="color-var">--deep</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#1A2235;"></div>
+        <div class="color-info">
+          <div class="color-name">Panel</div>
+          <div class="color-hex">#1A2235</div>
+          <div class="color-var">--panel</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#252E42;"></div>
+        <div class="color-info">
+          <div class="color-name">Border</div>
+          <div class="color-hex">#252E42</div>
+          <div class="color-var">--border</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="color:var(--white);font-size:1.1rem;margin-bottom:1.5rem;">Texto</h3>
+    <div class="color-grid" style="margin-bottom:3rem;">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#4A5568;"></div>
+        <div class="color-info">
+          <div class="color-name">Muted</div>
+          <div class="color-hex">#4A5568</div>
+          <div class="color-var">--muted</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#CBD5E1;"></div>
+        <div class="color-info">
+          <div class="color-name">Text</div>
+          <div class="color-hex">#CBD5E1</div>
+          <div class="color-var">--text</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#E2E8F0;"></div>
+        <div class="color-info">
+          <div class="color-name">Light</div>
+          <div class="color-hex">#E2E8F0</div>
+          <div class="color-var">--light</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F8FAFC;"></div>
+        <div class="color-info">
+          <div class="color-name">White</div>
+          <div class="color-hex">#F8FAFC</div>
+          <div class="color-var">--white</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="color:var(--white);font-size:1.1rem;margin-bottom:1.5rem;">Acentos</h3>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F97316;"></div>
+        <div class="color-info">
+          <div class="color-name">Accent (Naranja)</div>
+          <div class="color-hex">#F97316</div>
+          <div class="color-var">--accent / --primary</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FB923C;"></div>
+        <div class="color-info">
+          <div class="color-name">Accent 2</div>
+          <div class="color-hex">#FB923C</div>
+          <div class="color-var">--accent2</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#38BDF8;"></div>
+        <div class="color-info">
+          <div class="color-name">Electric (Azul)</div>
+          <div class="color-hex">#38BDF8</div>
+          <div class="color-var">--electric</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#34D399;"></div>
+        <div class="color-info">
+          <div class="color-name">Green</div>
+          <div class="color-hex">#34D399</div>
+          <div class="color-var">--green</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F87171;"></div>
+        <div class="color-info">
+          <div class="color-name">Red</div>
+          <div class="color-hex">#F87171</div>
+          <div class="color-var">--red</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A78BFA;"></div>
+        <div class="color-info">
+          <div class="color-name">Purple</div>
+          <div class="color-hex">#A78BFA</div>
+          <div class="color-var">--purple</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TIPOGRAFIA -->
+<section id="tipografia">
+  <div class="container">
+    <div class="section-label">// tipografia</div>
+    <h2>Fuentes y<br>escala</h2>
+    <p class="section-lead">Space Grotesk para display, JetBrains Mono para codigo y etiquetas.</p>
+
+    <div class="type-scale">
+      <div class="type-row">
+        <div class="type-label">Display / 5rem</div>
+        <div class="type-sample" style="font-size:5rem;font-weight:700;line-height:1.05;letter-spacing:-.03em;">NeuralJira</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">H1 / clamp</div>
+        <div class="type-sample" style="font-size:clamp(2.4rem,6vw,5rem);font-weight:700;line-height:1.05;letter-spacing:-.03em;">Titulo Principal</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">H2 / 2.8rem</div>
+        <div class="type-sample" style="font-size:2.8rem;font-weight:700;line-height:1.15;letter-spacing:-.025em;">Subtitulo de Seccion</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">H3 / 1.3rem</div>
+        <div class="type-sample" style="font-size:1.3rem;font-weight:600;">Titulo de Card o Componente</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Body / 1rem</div>
+        <div class="type-sample" style="font-size:1rem;line-height:1.7;">Texto de cuerpo con line-height 1.7 para legibilidad optima en interfaces oscuras.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Mono / .82rem</div>
+        <div class="type-sample" style="font-family:var(--font-mono);font-size:.82rem;color:var(--accent);">$ neuraljira.tech --mode=brand</div>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem;">
+      <h3 style="color:var(--white);font-size:1.1rem;margin-bottom:1rem;">Fuentes</h3>
+      <div class="component-grid">
+        <div class="comp-card">
+          <div class="comp-label">Display</div>
+          <div style="font-size:1.8rem;font-weight:700;color:var(--white);margin-bottom:.5rem;">Space Grotesk</div>
+          <div style="font-size:.85rem;color:var(--muted);">Para titulos, botones y texto display. Sans-serif geometrica.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-label">Mono</div>
+          <div style="font-family:var(--font-mono);font-size:1.4rem;font-weight:600;color:var(--accent);margin-bottom:.5rem;">JetBrains Mono</div>
+          <div style="font-size:.85rem;color:var(--muted);">Para codigo, terminales, badges y etiquetas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- COMPONENTES -->
+<section id="componentes">
+  <div class="container">
+    <div class="section-label">// componentes</div>
+    <h2>Elementos<br>reutilizables</h2>
+    <p class="section-lead">Componentes base del design system. Todos usan las variables CSS definidas.</p>
+
+    <div class="component-grid">
+      <!-- Botones -->
+      <div class="comp-card">
+        <div class="comp-label">Botones</div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="#" class="btn-primary" style="text-decoration:none;">Primary</a>
+          <a href="#" class="btn-ghost" style="text-decoration:none;">Ghost</a>
+          <a href="#" class="btn" style="background:var(--electric);color:var(--ink);text-decoration:none;">Electric</a>
+        </div>
+      </div>
+
+      <!-- Badge -->
+      <div class="comp-card">
+        <div class="comp-label">Badges</div>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
+          <span class="tag">Default</span>
+          <span class="tag blue">Electric</span>
+          <span class="tag green">Success</span>
+          <span class="tag purple">Purple</span>
+        </div>
+      </div>
+
+      <!-- Card -->
+      <div class="comp-card">
+        <div class="comp-label">Glass Card</div>
+        <div class="glass" style="padding:1.5rem;">
+          <div style="font-weight:600;color:var(--white);margin-bottom:.4rem;">Card Title</div>
+          <div style="font-size:.85rem;color:var(--muted);">Contenido con efecto glassmorphism y borde sutil.</div>
+        </div>
+      </div>
+
+      <!-- Terminal -->
+      <div class="comp-card">
+        <div class="comp-label">Terminal</div>
+        <div class="terminal" style="margin:0;max-width:100%;">
+          <div class="terminal-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+          </div>
+          <div class="terminal-body" style="min-height:auto;padding:.8rem 1rem;">
+            <span class="terminal-line t-prompt">$ echo "NeuralJira"</span>
+            <span class="terminal-line t-out">  NeuralJira</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Eyebrow -->
+      <div class="comp-card">
+        <div class="comp-label">Eyebrow</div>
+        <div class="hero-eyebrow" style="margin:0;">
+          <span></span> Etiqueta de contexto
+        </div>
+      </div>
+
+      <!-- Metric -->
+      <div class="comp-card">
+        <div class="comp-label">Metric</div>
+        <div class="metric" style="margin:0;">
+          <div class="metric-label">MRR</div>
+          <div class="metric-val">$2.2M <span>COP</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Espaciado -->
+    <div style="margin-top:3rem;">
+      <h3 style="color:var(--white);font-size:1.1rem;margin-bottom:1rem;">Espaciado</h3>
+      <div class="spacing-demo">
+        <div class="space-block" style="width:4px;height:4px;">4</div>
+        <div class="space-block" style="width:8px;height:8px;">8</div>
+        <div class="space-block" style="width:12px;height:12px;">12</div>
+        <div class="space-block" style="width:16px;height:16px;">16</div>
+        <div class="space-block" style="width:24px;height:24px;">24</div>
+        <div class="space-block" style="width:32px;height:32px;">32</div>
+        <div class="space-block" style="width:48px;height:48px;">48</div>
+        <div class="space-block" style="width:64px;height:64px;">64</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CODIGO -->
+<section id="codigo">
+  <div class="container">
+    <div class="section-label">// implementacion</div>
+    <h2>Como<br>usarlo</h2>
+    <p class="section-lead">Copy-paste del CSS y HTML para implementar el design system en cualquier proyecto.</p>
+
+    <h3 style="color:var(--white);font-size:1.1rem;margin-bottom:1rem;">CSS Variables</h3>
+    <div class="code-block" style="margin-bottom:2rem;">
+<span class="cmt">/* Agregar en :root */</span>
+<span class="kw">:root</span> {
+  <span class="fn">--ink:</span>       <span class="str">#0B0F1A</span>;
+  <span class="fn">--deep:</span>      <span class="str">#111827</span>;
+  <span class="fn">--panel:</span>     <span class="str">#1A2235</span>;
+  <span class="fn">--border:</span>    <span class="str">#252E42</span>;
+  <span class="fn">--muted:</span>     <span class="str">#4A5568</span>;
+  <span class="fn">--text:</span>      <span class="str">#CBD5E1</span>;
+  <span class="fn">--light:</span>     <span class="str">#E2E8F0</span>;
+  <span class="fn">--white:</span>     <span class="str">#F8FAFC</span>;
+  <span class="fn">--accent:</span>    <span class="str">#F97316</span>;
+  <span class="fn">--electric:</span>  <span class="str">#38BDF8</span>;
+  <span class="fn">--green:</span>     <span class="str">#34D399</span>;
+  <span class="fn">--red:</span>       <span class="str">#F87171</span>;
+  <span class="fn">--purple:</span>    <span class="str">#A78BFA</span>;
+  <span class="fn">--font-display:</span> <span class="str">'Space Grotesk', sans-serif</span>;
+  <span class="fn">--font-mono:</span>    <span class="str">'JetBrains Mono', monospace</span>;
+}
+    </div>
+
+    <h3 style="color:var(--white);font-size:1.1rem;margin-bottom:1rem;">Google Fonts</h3>
+    <div class="code-block">
+&lt;<span class="kw">link</span> <span class="fn">rel</span>=<span class="str">"preconnect"</span> <span class="fn">href</span>=<span class="str">"https://fonts.googleapis.com"</span>&gt;
+&lt;<span class="kw">link</span> <span class="fn">href</span>=<span class="str">"https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"</span> <span class="fn">rel</span>=<span class="str">"stylesheet"</span>&gt;
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">$ neuraljira.tech — brand guide v1.0</div>
+  <p>NeuralJira · Design System · Colombia · 2026</p>
+</footer>
+
+<script>
+const navToggle=document.getElementById('nav-toggle'),navLinks=document.getElementById('nav-links');
+if(navToggle&&navLinks){navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('mobile-open');navToggle.classList.toggle('open',o);});navLinks.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{navLinks.classList.remove('mobile-open');navToggle.classList.remove('open');});});}
+</script>
+</body>
+</html>

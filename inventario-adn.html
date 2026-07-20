@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InventarioADN — NeuralJira Portfolio</title>
+<meta name="description" content="Sistema integral de gestión de inventarios con bodega 3D interactiva. Multi-tenant SaaS para bodegas y distribuidoras.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">$ neuraljira.tech</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html">Portfolio</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span></span> InventarioADN · SaaS B2B</div>
+    <h1>Gestión de inventarios con <em>bodega 3D</em></h1>
+    <p class="hero-sub">Sistema integral para bodegas y distribuidoras. Importación desde Excel, visualización 3D de racks, multi-tenant con roles y auditoría.</p>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="terminal-title">~/inventario-adn · docker</span>
+      </div>
+      <div class="terminal-body" id="terminal-output"></div>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="https://web.neuraljira.tech" class="btn-primary" target="_blank">Ver en produccion</a>
+      <a href="index.html" class="btn-ghost">Volver al portfolio</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="features">
+  <div class="container">
+    <div class="section-label">// features</div>
+    <h2>Que hace<br>InventarioADN</h2>
+    <p class="section-lead">Un sistema completo para gestionar el flujo de mercancia entre bodega y eventos, con visualizacion 3D de la bodega.</p>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <h4>📊 Importacion Excel</h4>
+        <p>Carga masiva desde archivos .xlsx. Procesamiento automatico con Pandas, agregacion de stock para codigos duplicados.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🏢 Bodega 3D</h4>
+        <p>Visualizacion interactiva con Three.js y React Three Fiber. Zonas, racks, posiciones con navegacion espacial.</p>
+      </div>
+      <div class="feat-card">
+        <h4>👥 Multi-Tenant</h4>
+        <p>Aislamiento completo por organizacion. JWT + RBAC con 4 roles: Super Admin, Coordinador, Operador, Observador.</p>
+      </div>
+      <div class="feat-card">
+        <h4>📋 Eventos</h4>
+        <p>Gestion de eventos y actividades. Asignacion de items requeridos, seguimiento de estado y personal asignado.</p>
+      </div>
+      <div class="feat-card">
+        <h4>📱 Mobile-First</h4>
+        <p>Interfaz optimizada para dispositivos moviles. Operacion en campo con busqueda por codigo y localizacion 3D.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🔒 Auditoria</h4>
+        <p>Retroalimentacion de movimientos en tiempo real. Stock disponible calculado automaticamente con estado de movimientos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="stack">
+  <div class="container">
+    <div class="section-label">// stack</div>
+    <h2>Tecnologias<br>utilizadas</h2>
+
+    <table class="stack-table">
+      <thead><tr><th>Capa</th><th>Tecnologia</th><th>Version</th></tr></thead>
+      <tbody>
+        <tr><td><span class="stack-name">Frontend</span></td><td class="stack-desc">Astro + React + Tailwind CSS</td><td><span class="stack-badge free">6.0</span></td></tr>
+        <tr><td><span class="stack-name">3D</span></td><td class="stack-desc">Three.js + React Three Fiber + Drei</td><td><span class="stack-badge free">0.183</span></td></tr>
+        <tr><td><span class="stack-name">Backend</span></td><td class="stack-desc">Python + FastAPI + SQLAlchemy</td><td><span class="stack-badge free">3.11+</span></td></tr>
+        <tr><td><span class="stack-name">Base de Datos</span></td><td class="stack-desc">SQLite (portabilidad) / PostgreSQL</td><td><span class="stack-badge free">3</span></td></tr>
+        <tr><td><span class="stack-name">Animaciones</span></td><td class="stack-desc">Framer Motion + Lucide React</td><td><span class="stack-badge free">12.x</span></td></tr>
+        <tr><td><span class="stack-name">Infraestructura</span></td><td class="stack-desc">Docker Compose + Nginx</td><td><span class="stack-badge free">Latest</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="pricing">
+  <div class="container">
+    <div class="section-label">// pricing · SaaS</div>
+    <h2>Planes y<br>precios</h2>
+    <p class="section-lead">Modelo de negocio B2B con suscripciones recurrentes. Plan Starter gratis para captacion.</p>
+
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-label">Plan Starter</div>
+        <div class="metric-val">$0 <span>COP/mes</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Plan Core</div>
+        <div class="metric-val">$150k <span>COP/mes</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Plan Pro</div>
+        <div class="metric-val">$450k <span>COP/mes</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Setup Fee</div>
+        <div class="metric-val">$300-500k <span>COP</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">$ neuraljira.tech — v1.0.0</div>
+  <p>InventarioADN · NeuralJira · Colombia · 2026</p>
+</footer>
+
+<script>
+const lines = [
+  { type: 'prompt', text: 'docker-compose up -d' },
+  { type: 'out',    text: 'Creating network "adn_default"... done' },
+  { type: 'out',    text: 'Creating adn-frontend-1 ... done' },
+  { type: 'out',    text: 'Creating adn-backend-1  ... done' },
+  { type: 'prompt', text: 'curl http://localhost:8001/docs' },
+  { type: 'info',   text: 'FastAPI docs available at /docs' },
+  { type: 'prompt', text: 'echo "Bodega 3D lista en http://localhost:4321"' },
+  { type: 'green',  text: '✓ InventarioADN corriendo en produccion' },
+];
+const output = document.getElementById('terminal-output');
+let lineIdx = 0, charIdx = 0, currentEl = null;
+function colorClass(t) { return {prompt:'t-prompt',out:'t-out',info:'t-info',green:'t-out'}[t]||'t-cmd'; }
+function prefix(t) { return t==='prompt'?'$ ':'  '; }
+function typeNext() {
+  if(lineIdx>=lines.length){const c=document.createElement('span');c.className='terminal-line t-prompt';c.innerHTML='$ <span class="cursor"></span>';output.appendChild(c);return;}
+  const l=lines[lineIdx];
+  if(charIdx===0){currentEl=document.createElement('span');currentEl.className='terminal-line '+colorClass(l.type);currentEl.textContent=prefix(l.type);output.appendChild(currentEl);}
+  if(charIdx<l.text.length){currentEl.textContent=prefix(l.type)+l.text.slice(0,charIdx+1);charIdx++;setTimeout(typeNext,l.type==='prompt'?42:18);}
+  else{lineIdx++;charIdx=0;setTimeout(typeNext,l.type==='prompt'?320:180);}
+}
+window.addEventListener('load',()=>setTimeout(typeNext,800));
+const navToggle=document.getElementById('nav-toggle'),navLinks=document.getElementById('nav-links');
+if(navToggle&&navLinks){navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('mobile-open');navToggle.classList.toggle('open',o);});navLinks.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{navLinks.classList.remove('mobile-open');navToggle.classList.remove('open');});});}
+</script>
+</body>
+</html>

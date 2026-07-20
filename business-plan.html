@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuralJira — Plan de Negocios 2026</title>
+<meta name="description" content="Plan de negocios de NeuralJira. Streams de ingresos, estrategia de redes sociales, pricing y proyecciones financieras.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .revenue-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .revenue-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color .25s, transform .25s;
+  }
+  .revenue-card:hover {
+    border-color: rgba(249,115,22,.4);
+    transform: translateY(-3px);
+  }
+  .revenue-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .revenue-card.saas::before { background: var(--accent); }
+  .revenue-card.services::before { background: var(--electric); }
+  .revenue-card.content::before { background: var(--green); }
+  .revenue-card.hw::before { background: var(--purple); }
+
+  .revenue-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .revenue-name {
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--white); margin-bottom: .4rem;
+  }
+  .revenue-desc {
+    font-size: .88rem; color: var(--muted); line-height: 1.6;
+    margin-bottom: 1.2rem;
+  }
+  .revenue-price {
+    font-family: var(--font-mono); font-size: .82rem;
+    color: var(--accent); margin-bottom: .8rem;
+  }
+  .revenue-items {
+    list-style: none; padding: 0;
+  }
+  .revenue-items li {
+    font-size: .84rem; color: var(--text);
+    padding: .4rem 0; padding-left: 1.2rem;
+    position: relative;
+  }
+  .revenue-items li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--accent); font-size: .75rem;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 7px; top: 0; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+  .tl-item {
+    position: relative;
+    padding: 0 0 2.5rem 2rem;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute; left: -2rem; top: 4px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--ink);
+  }
+  .tl-item.done::before { background: var(--green); }
+  .tl-item.future::before { background: var(--muted); }
+  .tl-label {
+    font-family: var(--font-mono); font-size: .7rem;
+    color: var(--accent); letter-spacing: .1em;
+    text-transform: uppercase; margin-bottom: .3rem;
+  }
+  .tl-title {
+    font-size: 1.05rem; font-weight: 600;
+    color: var(--white); margin-bottom: .3rem;
+  }
+  .tl-desc {
+    font-size: .85rem; color: var(--muted); line-height: 1.6;
+  }
+
+  .social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .social-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color .25s;
+  }
+  .social-card:hover { border-color: rgba(249,115,22,.3); }
+  .social-icon { font-size: 2rem; margin-bottom: .8rem; }
+  .social-name {
+    font-size: 1rem; font-weight: 600;
+    color: var(--white); margin-bottom: .3rem;
+  }
+  .social-desc {
+    font-size: .84rem; color: var(--muted); line-height: 1.6;
+    margin-bottom: .8rem;
+  }
+  .social-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .price-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    transition: border-color .25s, transform .25s;
+  }
+  .price-card:hover {
+    border-color: rgba(249,115,22,.4);
+    transform: translateY(-4px);
+  }
+  .price-card.featured {
+    border-color: var(--accent);
+    box-shadow: 0 0 40px rgba(249,115,22,.1);
+  }
+  .price-card.featured::before {
+    content: 'MAS POPULAR';
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: var(--ink);
+    font-family: var(--font-mono); font-size: .65rem; font-weight: 700;
+    padding: .3rem .8rem; border-radius: 3px;
+    letter-spacing: .1em;
+  }
+  .price-plan {
+    font-family: var(--font-mono); font-size: .75rem;
+    color: var(--accent); letter-spacing: .1em;
+    text-transform: uppercase; margin-bottom: .5rem;
+  }
+  .price-amount {
+    font-size: 2.8rem; font-weight: 700;
+    color: var(--white); margin-bottom: .2rem;
+  }
+  .price-amount span {
+    font-size: .9rem; color: var(--muted); font-weight: 400;
+  }
+  .price-period {
+    font-size: .82rem; color: var(--muted); margin-bottom: 1.5rem;
+  }
+  .price-features {
+    list-style: none; padding: 0; text-align: left;
+    margin-bottom: 1.5rem;
+  }
+  .price-features li {
+    font-size: .85rem; color: var(--text);
+    padding: .5rem 0; padding-left: 1.5rem;
+    position: relative;
+    border-bottom: 1px solid rgba(37,46,66,.5);
+  }
+  .price-features li::before {
+    content: '✓'; position: absolute; left: 0;
+    color: var(--green); font-weight: 600;
+  }
+  .price-features li.disabled {
+    color: var(--muted);
+  }
+  .price-features li.disabled::before {
+    content: '✕'; color: var(--muted);
+  }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .kpi-card {
+    background: var(--deep);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem;
+    text-align: center;
+  }
+  .kpi-label {
+    font-family: var(--font-mono); font-size: .68rem;
+    color: var(--muted); letter-spacing: .1em;
+    text-transform: uppercase; margin-bottom: .3rem;
+  }
+  .kpi-val {
+    font-size: 1.8rem; font-weight: 700;
+    color: var(--white);
+  }
+  .kpi-val span {
+    font-size: .8rem; color: var(--muted); font-weight: 400;
+  }
+  .kpi-change {
+    font-family: var(--font-mono); font-size: .72rem;
+    margin-top: .3rem;
+  }
+  .kpi-change.up { color: var(--green); }
+  .kpi-change.down { color: var(--red); }
+
+  .content-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: .5rem;
+    margin-top: 1.5rem;
+  }
+  .cal-day {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: .8rem;
+    text-align: center;
+    min-height: 80px;
+  }
+  .cal-day-label {
+    font-family: var(--font-mono); font-size: .65rem;
+    color: var(--muted); letter-spacing: .08em;
+    text-transform: uppercase; margin-bottom: .4rem;
+  }
+  .cal-day-content {
+    font-size: .72rem; color: var(--text); line-height: 1.4;
+  }
+  .cal-day.highlight {
+    border-color: var(--accent);
+    background: rgba(249,115,22,.05);
+  }
+  .cal-day.highlight .cal-day-content { color: var(--accent); }
+
+  .funnel {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .funnel-step {
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 600;
+    font-size: .9rem;
+    transition: transform .2s;
+  }
+  .funnel-step:hover { transform: scale(1.02); }
+
+  @media (max-width: 640px) {
+    .content-calendar { grid-template-columns: repeat(3, 1fr); }
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">$ neuraljira.tech</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html">Portfolio</a></li>
+    <li><a href="#ingresos">Ingresos</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#redes">Redes</a></li>
+    <li><a href="#contenido">Contenido</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#proyecciones">Proyecciones</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span></span> Business Plan · NeuralJira 2026</div>
+    <h1>De agencia<br>a <em>SaaS propio</em></h1>
+    <p class="hero-sub">Plan de negocios para convertir NeuralJira en una empresa de ingresos recurrentes. Streams de ingresos, estrategia de contenido y proyecciones financieras.</p>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="terminal-title">~/business-plan · neuraljira</span>
+      </div>
+      <div class="terminal-body" id="terminal-output"></div>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="#ingresos" class="btn-primary">Ver planes de ingreso</a>
+      <a href="#pricing" class="btn-ghost">Ver pricing</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- RESUMEN EJECUTIVO -->
+<section id="resumen">
+  <div class="container">
+    <div class="section-label">// resumen ejecutivo</div>
+    <h2>La oportunidad<br>de negocio</h2>
+    <p class="section-lead">NeuralJira tiene 8 productos construidos. El objetivo: monetizar 3 de ellos como SaaS y vender servicios de desarrollo como agencia.</p>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Productos listos</div>
+        <div class="kpi-val">8</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Potencial MRR mes 6</div>
+        <div class="kpi-val">$8M <span>COP</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Meta clientes SaaS</div>
+        <div class="kpi-val">30</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Margen estimado</div>
+        <div class="kpi-val">82<span>%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- STREAMS DE INGRESOS -->
+<section id="ingresos">
+  <div class="container">
+    <div class="section-label">// streams de ingresos</div>
+    <h2>4 formas de<br>generar dinero</h2>
+    <p class="section-lead">Ingresos diversificados: SaaS recurrente, servicios, contenido y hardware.</p>
+
+    <div class="revenue-grid">
+      <!-- SaaS -->
+      <div class="revenue-card saas">
+        <div class="revenue-icon">💰</div>
+        <div class="revenue-name">SaaS (Ingresos Recurrentes)</div>
+        <div class="revenue-desc">Suscripciones mensuales de tus productos. El motor principal de crecimiento.</div>
+        <div class="revenue-price">MRR objetivo: $5M-$15M COP/mes</div>
+        <ul class="revenue-items">
+          <li><strong>InventarioADN</strong> — $150K-$450K/mes por cliente</li>
+          <li><strong>FTTH Mapper</strong> — $200K-$600K/mes por cliente</li>
+          <li><strong>GymTrack SaaS</strong> — $180K/mes por gimnasio</li>
+        </ul>
+      </div>
+
+      <!-- Servicios -->
+      <div class="revenue-card services">
+        <div class="revenue-icon">⚡</div>
+        <div class="revenue-name">Servicios de Desarrollo</div>
+        <div class="revenue-desc">Proyectos a medida para clientes. Ingreso rapido para financiar el SaaS.</div>
+        <div class="revenue-price">Ticket promedio: $5M-$20M COP/proyecto</div>
+        <ul class="revenue-items">
+          <li>Landing pages y sitios web</li>
+          <li>Apps web a medida</li>
+          <li>Integraciones y APIs</li>
+          <li>Consultoria tecnica</li>
+        </ul>
+      </div>
+
+      <!-- Contenido -->
+      <div class="revenue-card content">
+        <div class="revenue-icon">📱</div>
+        <div class="revenue-name">Contenido y Formacion</div>
+        <div class="revenue-desc">Cursos, guias y contenido que genera trafico y leads cualificados.</div>
+        <div class="revenue-price">Ingresos por afiliados + cursos</div>
+        <ul class="revenue-items">
+          <li>Guia "De Agencia a SaaS" (contenido viral)</li>
+          <li>Cursos de desarrollo web</li>
+          <li>Afiliados de hosting y herramientas</li>
+          <li>Sponsorships de herramientas dev</li>
+        </ul>
+      </div>
+
+      <!-- Hardware -->
+      <div class="revenue-card hw">
+        <div class="revenue-icon">📦</div>
+        <div class="revenue-name">Hardware as a Service</div>
+        <div class="revenue-desc">Alquilar dispositivos pre-configurados con tu software para clientes que no quieren comprar hardware.</div>
+        <div class="revenue-price">Revenue: $50K-$100K/mes por dispositivo</div>
+        <ul class="revenue-items">
+          <li>Tablets para operadores de bodega</li>
+          <li>Terminales POS para gimnasios</li>
+          <li>Dispositivos GPS para monitoreo FTTH</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PRICING DETALLADO -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-label">// pricing · planes</div>
+    <h2>Planes de<br>suscripcion</h2>
+    <p class="section-lead">Estrategia de pricing por producto. Plan Starter gratis para captacion, planes de pago para escalar.</p>
+
+    <!-- InventarioADN Pricing -->
+    <h3 style="color:var(--white);font-size:1.2rem;margin-bottom:1.5rem;">📦 InventarioADN</h3>
+    <div class="pricing-grid" style="margin-bottom:3rem;">
+      <div class="price-card">
+        <div class="price-plan">Starter</div>
+        <div class="price-amount">$0</div>
+        <div class="price-period">Gratis para siempre</div>
+        <ul class="price-features">
+          <li>Hasta 500 items</li>
+          <li>3 usuarios</li>
+          <li>1 zona 3D</li>
+          <li>Upload Excel basico</li>
+          <li class="disabled">Sin bodega 3D</li>
+          <li class="disabled">Sin audit logs</li>
+        </ul>
+        <a href="#" class="btn-ghost" style="width:100%;text-align:center;">Empezar gratis</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-plan">Core</div>
+        <div class="price-amount">$150k</div>
+        <div class="price-period">COP/mes · facturacion mensual</div>
+        <ul class="price-features">
+          <li>Hasta 5,000 items</li>
+          <li>10 usuarios</li>
+          <li>5 zonas 3D</li>
+          <li>Upload Excel avanzado</li>
+          <li>Bodega 3D completa</li>
+          <li>Audit logs 30 dias</li>
+        </ul>
+        <a href="#" class="btn-primary" style="width:100%;text-align:center;">Empezar ahora</a>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">Pro</div>
+        <div class="price-amount">$450k</div>
+        <div class="price-period">COP/mes · facturacion mensual</div>
+        <ul class="price-features">
+          <li>Items ilimitados</li>
+          <li>Usuarios ilimitados</li>
+          <li>Zonas 3D ilimitadas</li>
+          <li>Upload Excel avanzado</li>
+          <li>Bodega 3D completa</li>
+          <li>Audit logs ilimitados</li>
+          <li>Soporte prioritario</li>
+          <li>API access</li>
+        </ul>
+        <a href="#" class="btn-ghost" style="width:100%;text-align:center;">Contactar ventas</a>
+      </div>
+    </div>
+
+    <!-- FTTH Mapper Pricing -->
+    <h3 style="color:var(--white);font-size:1.2rem;margin-bottom:1.5rem;">📡 FTTH Mapper</h3>
+    <div class="pricing-grid" style="margin-bottom:3rem;">
+      <div class="price-card">
+        <div class="price-plan">Basic</div>
+        <div class="price-amount">$200k</div>
+        <div class="price-period">COP/mes</div>
+        <ul class="price-features">
+          <li>Hasta 500 nodos</li>
+          <li>1 usuario</li>
+          <li>Mapa interactivo</li>
+          <li>Trazado de cables</li>
+          <li class="disabled">Sin GPS</li>
+          <li class="disabled">Sin diagrama empalmes</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <div class="price-plan">Pro</div>
+        <div class="price-amount">$600k</div>
+        <div class="price-period">COP/mes</div>
+        <ul class="price-features">
+          <li>Nodos ilimitados</li>
+          <li>5 usuarios</li>
+          <li>Mapa + GPS en tiempo real</li>
+          <li>Diagrama de empalmes</li>
+          <li>Gestion OLT/ODF</li>
+          <li>Reportes exportables</li>
+          <li>Soporte prioritario</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">Enterprise</div>
+        <div class="price-amount">$1.5M</div>
+        <div class="price-period">COP/mes</div>
+        <ul class="price-features">
+          <li>Todo de Pro</li>
+          <li>Usuarios ilimitados</li>
+          <li>API dedicada</li>
+          <li>Deploy on-premise</li>
+          <li>SLA 99.9%</li>
+          <li>Account manager</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- GymTrack Pricing -->
+    <h3 style="color:var(--white);font-size:1.2rem;margin-bottom:1.5rem;">🏋️ GymTrack SaaS</h3>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-plan">Trial</div>
+        <div class="price-amount">$0</div>
+        <div class="price-period">7 dias gratis</div>
+        <ul class="price-features">
+          <li>Todas las features</li>
+          <li>1 gimnasio</li>
+          <li>Sin tarjeta de credito</li>
+          <li>Soporte por email</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <div class="price-plan">Mensual</div>
+        <div class="price-amount">$180k</div>
+        <div class="price-period">COP/mes por gimnasio</div>
+        <ul class="price-features">
+          <li>Gestion completa de miembros</li>
+          <li>POS integrado</li>
+          <li>Reportes financieros</li>
+          <li>Inventario en tiempo real</li>
+          <li>Sincronizacion cloud</li>
+          <li>Soporte incluido</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">Lifetime</div>
+        <div class="price-amount">$1.8M</div>
+        <div class="price-period">COP pago unico</div>
+        <ul class="price-features">
+          <li>Todo del plan mensual</li>
+          <li>Licencia de por vida</li>
+          <li>Actualizaciones incluidas</li>
+          <li>Soporte 1 ano</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ESTRATEGIA DE REDES -->
+<section id="redes">
+  <div class="container">
+    <div class="section-label">// redes sociales</div>
+    <h2>Estrategia de<br>redes sociales</h2>
+    <p class="section-lead">Canales prioritarios para generar trafico, leads y brand awareness.</p>
+
+    <div class="social-grid">
+      <div class="social-card">
+        <div class="social-icon">📹</div>
+        <div class="social-name">YouTube</div>
+        <div class="social-desc">Serie "De Agencia a SaaS". Contenido largo que posiciona. Videos de 10-20 min sobre el journey real.</div>
+        <div class="social-tags">
+          <span class="tag">Long-form</span>
+          <span class="tag blue">SEO</span>
+          <span class="tag green">Trust</span>
+        </div>
+      </div>
+      <div class="social-card">
+        <div class="social-icon">📸</div>
+        <div class="social-name">Instagram / TikTok</div>
+        <div class="social-desc">Clips cortos del codigo, demos de productos, behind the scenes. Reels de 30-60 seg que viralizan.</div>
+        <div class="social-tags">
+          <span class="tag">Short-form</span>
+          <span class="tag purple">Viral</span>
+          <span class="tag">Reach</span>
+        </div>
+      </div>
+      <div class="social-card">
+        <div class="social-icon">💼</div>
+        <div class="social-name">LinkedIn</div>
+        <div class="social-desc">Articulos tecnicos, case studies, resultados de clientes. B2B puro. Outreach directo a decisores.</div>
+        <div class="social-tags">
+          <span class="tag">B2B</span>
+          <span class="tag blue">Leads</span>
+          <span class="tag green">Authority</span>
+        </div>
+      </div>
+      <div class="social-card">
+        <div class="social-icon">🐦</div>
+        <div class="social-name">X (Twitter)</div>
+        <div class="social-desc">Hilos tecnicos, launches de features, interaccion con la comunidad dev. Building in public.</div>
+        <div class="social-tags">
+          <span class="tag">Community</span>
+          <span class="tag purple">Launch</span>
+        </div>
+      </div>
+      <div class="social-card">
+        <div class="social-icon">💬</div>
+        <div class="social-name">WhatsApp Business</div>
+        <div class="social-desc">Canal directo de ventas B2B. Outreach personalizado, seguimiento de leads, soporte rapido.</div>
+        <div class="social-tags">
+          <span class="tag">Ventas</span>
+          <span class="tag green">Directo</span>
+        </div>
+      </div>
+      <div class="social-card">
+        <div class="social-icon">📝</div>
+        <div class="social-name">Blog / SEO</div>
+        <div class="social-desc">Articulos en neuraljira.tech. Tutoriales, guias, comparativas. Trafico organico constante.</div>
+        <div class="social-tags">
+          <span class="tag">SEO</span>
+          <span class="tag blue">Organico</span>
+          <span class="tag">Evergreen</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ESTRATEGIA DE CONTENIDO -->
+<section id="contenido">
+  <div class="container">
+    <div class="section-label">// contenido</div>
+    <h2>Calendario de<br>contenido semanal</h2>
+    <p class="section-lead">Rutina de publicacion para mantener presencia activa en todas las plataformas.</p>
+
+    <div class="content-calendar">
+      <div class="cal-day highlight">
+        <div class="cal-day-label">Lun</div>
+        <div class="cal-day-content">📹 Video YouTube largo (10-20 min)</div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-label">Mar</div>
+        <div class="cal-day-content">📸 Reel/TikTok clip del video</div>
+      </div>
+      <div class="cal-day highlight">
+        <div class="cal-day-label">Mie</div>
+        <div class="cal-day-content">📝 Blog post + LinkedIn article</div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-label">Jue</div>
+        <div class="cal-day-content">📸 Reel/TikTok + Twitter hilo</div>
+      </div>
+      <div class="cal-day highlight">
+        <div class="cal-day-label">Vie</div>
+        <div class="cal-day-content">📹 Video YouTube (demo/case study)</div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-label">Sab</div>
+        <div class="cal-day-content">📸 Behind the scenes + stories</div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-label">Dom</div>
+        <div class="cal-day-content">💬 Community engagement + replies</div>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem;">
+      <h3 style="color:var(--white);font-size:1.1rem;margin-bottom:1rem;">Tipos de contenido que generan ventas</h3>
+      <div class="revenue-grid">
+        <div class="revenue-card saas">
+          <div class="revenue-name">🎬 Casos de Estudio</div>
+          <div class="revenue-desc">"Como Central Cervecera optimizo su bodega con InventarioADN". Historias reales que venden.</div>
+          <ul class="revenue-items">
+            <li>Video de 5-10 min en YouTube</li>
+            <li>Post en LinkedIn con metricas</li>
+            <li>Reel de 60 seg con resultado</li>
+          </ul>
+        </div>
+        <div class="revenue-card services">
+          <div class="revenue-name">💻 Demos en Vivo</div>
+          <div class="revenue-desc">Mostrar el producto funcionando. Screen recordings de features clave que resuelven problemas.</div>
+          <ul class="revenue-items">
+            <li>TikTok/Reel de 30 seg</li>
+            <li>Twitter thread con screenshots</li>
+            <li>YouTube short</li>
+          </ul>
+        </div>
+        <div class="revenue-card content">
+          <div class="revenue-name">📊 Datos y Metricas</div>
+          <div class="revenue-desc">"Ahorramos 20 hrs/semana a nuestra cliente". Numeros concretos que generan confianza.</div>
+          <ul class="revenue-items">
+            <li>Infografia para Instagram</li>
+            <li>LinkedIn post con ROI</li>
+            <li>YouTube video con breakdown</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FUNNEL DE VENTAS -->
+<section id="funnel">
+  <div class="container">
+    <div class="section-label">// funnel de ventas</div>
+    <h2>Como convertimos<br>visitors en clientes</h2>
+
+    <div class="funnel">
+      <div class="funnel-step" style="background:var(--accent);color:var(--ink);width:100%;">
+        🎯 AWARENESS — Contenido viral en redes (YouTube, TikTok, Instagram)
+      </div>
+      <div class="funnel-step" style="background:rgba(249,115,22,.2);color:var(--accent);width:85%;margin:0 auto;">
+        🔍 INTERES — Landing page + demo gratis + lead magnet (guia PDF)
+      </div>
+      <div class="funnel-step" style="background:rgba(56,189,248,.15);color:var(--electric);width:70%;margin:0 auto;">
+        📞 CONSIDERACION — WhatsApp outreach + demo en vivo + case studies
+      </div>
+      <div class="funnel-step" style="background:rgba(52,211,153,.12);color:var(--green);width:55%;margin:0 auto;">
+        💳 COMPRA — Trial gratuito 7 dias → onboarding → primer pago
+      </div>
+      <div class="funnel-step" style="background:rgba(167,139,250,.12);color:var(--purple);width:40%;margin:0 auto;">
+        🔄 RETENCION — Soporte + nuevas features + comunidad + upsell
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="container">
+    <div class="section-label">// timeline</div>
+    <h2>Roadmap de<br>12 meses</h2>
+    <p class="section-lead">Pasos concretos mes a mes para llegar a $8M de MRR.</p>
+
+    <div class="timeline">
+      <div class="tl-item done">
+        <div class="tl-label">Mes 1 · Ya empezado</div>
+        <div class="tl-title">Portfolio y Brand</div>
+        <div class="tl-desc">Landing neuraljira.tech, brand guide, portfolio de proyectos. Primera impression profesional.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-label">Mes 2</div>
+        <div class="tl-title">Lanzar Serie YouTube</div>
+        <div class="tl-desc">Publicar primeros 3 episodios de "De Agencia a SaaS". Crear canales en Instagram y TikTok.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-label">Mes 3</div>
+        <div class="tl-title">Primer Cliente SaaS</div>
+        <div class="tl-desc">Cerrar 1 cliente pagador en InventarioADN o FTTH Mapper. Case study real para contenido.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-label">Mes 4-5</div>
+        <div class="tl-title">Ejecutar Outreach B2B</div>
+        <div class="tl-desc">WhatsApp outreach a 100 negocios por semana. LinkedIn posts 3x por semana. Meta: 5 clientes SaaS.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-label">Mes 6</div>
+        <div class="tl-title">$2M MRR</div>
+        <div class="tl-desc">10 clientes pagando entre $150K-$450K. Constituir SAS. Primer hire: desarrollador junior.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-label">Mes 7-9</div>
+        <div class="tl-title">Escalar Contenido</div>
+        <div class="tl-desc">12+ videos publicados. 50+ reels. Blog con 20+ articulos. Trafico organico creciendo 20% mensual.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-label">Mes 10-12</div>
+        <div class="tl-title">$8M MRR</div>
+        <div class="tl-desc">30 clientes SaaS + 2 proyectos de servicios/mes. Equipo de 3 personas. Preparar ronda de inversion.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROYECCIONES FINANCIERAS -->
+<section id="proyecciones">
+  <div class="container">
+    <div class="section-label">// proyecciones financieras</div>
+    <h2>Numeros del<br>negocio</h2>
+    <p class="section-lead">Proyeccion conservadora basada en el mercado colombiano y los precios definidos.</p>
+
+    <div class="kpi-grid" style="margin-bottom:2rem;">
+      <div class="kpi-card">
+        <div class="kpi-label">Mes 3 · MRR</div>
+        <div class="kpi-val">$2M <span>COP</span></div>
+        <div class="kpi-change up">5 clientes x $400K promedio</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Mes 6 · MRR</div>
+        <div class="kpi-val">$5M <span>COP</span></div>
+        <div class="kpi-change up">12 clientes + servicios</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Mes 9 · MRR</div>
+        <div class="kpi-val">$7M <span>COP</span></div>
+        <div class="kpi-change up">20 clientes + retencion 90%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Mes 12 · MRR</div>
+        <div class="kpi-val">$8M <span>COP</span></div>
+        <div class="kpi-change up">30 clientes + servicios</div>
+      </div>
+    </div>
+
+    <h3 style="color:var(--white);font-size:1.1rem;margin-bottom:1rem;">Desglose de ingresos mensuales (Mes 12)</h3>
+    <div class="revenue-grid">
+      <div class="revenue-card saas">
+        <div class="revenue-name">SaaS MRR</div>
+        <div class="revenue-price">$6M COP/mes</div>
+        <ul class="revenue-items">
+          <li>InventarioADN: 15 clientes x $250K</li>
+          <li>FTTH Mapper: 8 clientes x $400K</li>
+          <li>GymTrack: 7 clientes x $180K</li>
+        </ul>
+      </div>
+      <div class="revenue-card services">
+        <div class="revenue-name">Servicios</div>
+        <div class="revenue-price">$2M COP/mes</div>
+        <ul class="revenue-items">
+          <li>2 proyectos de desarrollo/mes</li>
+          <li>Ticket promedio: $10M COP</li>
+          <li>Margen: ~70% (costo tiempo dev)</li>
+        </ul>
+      </div>
+      <div class="revenue-card content">
+        <div class="revenue-name">Contenido</div>
+        <div class="revenue-price">$500K COP/mes</div>
+        <ul class="revenue-items">
+          <li>Afiliados de hosting</li>
+          <li>Cursos online</li>
+          <li>Sponsorships</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="color:var(--white);font-size:1.1rem;margin:2rem 0 1rem;">Costos fijos mensuales</h3>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Infraestructura</div>
+        <div class="kpi-val">$300k <span>COP</span></div>
+        <div class="kpi-change">VPS + dominios + tools</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Equipo (Mes 12)</div>
+        <div class="kpi-val">$3M <span>COP</span></div>
+        <div class="kpi-change">3 personas (dev + sales)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Marketing</div>
+        <div class="kpi-val">$500k <span>COP</span></div>
+        <div class="kpi-change">Ads + herramientas</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Total Costos</div>
+        <div class="kpi-val">$3.8M <span>COP</span></div>
+        <div class="kpi-change up">Margen neto: ~60%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CTA -->
+<section>
+  <div class="container" style="text-align:center;">
+    <div class="section-label">// siguiente paso</div>
+    <h2>Empezar<br>hoy</h2>
+    <p class="section-lead" style="margin:0 auto 2rem;">El plan esta claro. El siguiente paso es ejecutar. Primera accion: publicar el primer video de YouTube esta semana.</p>
+    <div class="hero-ctas">
+      <a href="https://neuraljira.tech" class="btn-primary" target="_blank">Visitar neuraljira.tech</a>
+      <a href="brand-guide.html" class="btn-ghost">Ver Brand Guide</a>
+      <a href="index.html" class="btn-ghost">Ver Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">$ neuraljira.tech — business plan v1.0</div>
+  <p>NeuralJira · Plan de Negocios · Colombia · 2026</p>
+</footer>
+
+<script>
+const lines = [
+  { type: 'prompt', text: 'cat business-plan.txt' },
+  { type: 'out',    text: '4 streams de ingresos · 3 productos SaaS · 1 agencia' },
+  { type: 'prompt', text: 'echo "Meta mes 12: $8M COP MRR"' },
+  { type: 'info',   text: 'Meta mes 12: $8M COP MRR' },
+  { type: 'prompt', text: 'grep -r "clientes" metrics.json | wc -l' },
+  { type: 'out',    text: '30 clientes SaaS proyectados' },
+  { type: 'prompt', text: 'python forecast.py --months=12 --margin=60%' },
+  { type: 'green',  text: '✓ Plan de negocios listo para ejecutar' },
+];
+const output = document.getElementById('terminal-output');
+let lineIdx = 0, charIdx = 0, currentEl = null;
+function colorClass(t) { return {prompt:'t-prompt',out:'t-out',info:'t-info',green:'t-out'}[t]||'t-cmd'; }
+function prefix(t) { return t==='prompt'?'$ ':'  '; }
+function typeNext() {
+  if(lineIdx>=lines.length){const c=document.createElement('span');c.className='terminal-line t-prompt';c.innerHTML='$ <span class="cursor"></span>';output.appendChild(c);return;}
+  const l=lines[lineIdx];
+  if(charIdx===0){currentEl=document.createElement('span');currentEl.className='terminal-line '+colorClass(l.type);currentEl.textContent=prefix(l.type);output.appendChild(currentEl);}
+  if(charIdx<l.text.length){currentEl.textContent=prefix(l.type)+l.text.slice(0,charIdx+1);charIdx++;setTimeout(typeNext,l.type==='prompt'?42:18);}
+  else{lineIdx++;charIdx=0;setTimeout(typeNext,l.type==='prompt'?320:180);}
+}
+window.addEventListener('load',()=>setTimeout(typeNext,800));
+const navToggle=document.getElementById('nav-toggle'),navLinks=document.getElementById('nav-links');
+if(navToggle&&navLinks){navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('mobile-open');navToggle.classList.toggle('open',o);});navLinks.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{navLinks.classList.remove('mobile-open');navToggle.classList.remove('open');});});}
+</script>
+</body>
+</html>

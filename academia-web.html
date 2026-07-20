@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academia Web — NeuralJira Portfolio</title>
+<meta name="description" content="Plataforma de cursos online con dashboard, curso de Git Master y modo demo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">$ neuraljira.tech</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html">Portfolio</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#stack">Stack</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span></span> Academia Web · E-learning</div>
+    <h1>Plataforma de<br><em>cursos online</em><br>interactiva</h1>
+    <p class="hero-sub">Dashboard moderno con curso de Git Master integrado. Modo demo sin base de datos. Desplegable en Dockploy con Docker.</p>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="terminal-title">~/academia-web · astro + docker</span>
+      </div>
+      <div class="terminal-body" id="terminal-output"></div>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="index.html" class="btn-ghost">Volver al portfolio</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="features">
+  <div class="container">
+    <div class="section-label">// features</div>
+    <h2>Que incluye<br>Academia Web</h2>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <h4>🎓 Curso de Git Master</h4>
+        <p>7 dias de lecciones interactivas. Arquitectura basada en diapositivas React. Diseno optimizado para aprendizaje rapido.</p>
+      </div>
+      <div class="feat-card">
+        <h4>📊 Dashboard</h4>
+        <p>Panel de usuario con progreso de cursos, estadisticas de aprendizaje y navegacion intuitiva.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🛠️ Modo Demo</h4>
+        <p>Deteccion automatica de base de datos offline. Acceso al dashboard y curso sin configuracion.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🐳 Docker Ready</h4>
+        <p>Desplegable en Dockploy. docker-compose.yml y entrypoint script para setup automatico.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🔐 Auth Basico</h4>
+        <p>Login con creacion automatica de usuario administrador inicial. Proteccion de rutas.</p>
+      </div>
+      <div class="feat-card">
+        <h4>📱 Responsive</h4>
+        <p>Interfaz adaptable a movil y escritorio. Acceso comodo a los cursos desde cualquier dispositivo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="stack">
+  <div class="container">
+    <div class="section-label">// stack</div>
+    <h2>Tecnologias</h2>
+
+    <table class="stack-table">
+      <thead><tr><th>Capa</th><th>Tecnologia</th><th>Detalle</th></tr></thead>
+      <tbody>
+        <tr><td><span class="stack-name">Frontend</span></td><td class="stack-desc">Astro + React</td><td><span class="stack-badge free">SSG + SPA</span></td></tr>
+        <tr><td><span class="stack-name">Backend</span></td><td class="stack-desc">Astro API Routes</td><td><span class="stack-badge free">Server</span></td></tr>
+        <tr><td><span class="stack-name">Base de Datos</span></td><td class="stack-desc">SQLite / PostgreSQL</td><td><span class="stack-badge free">Opcional</span></td></tr>
+        <tr><td><span class="stack-name">Infra</span></td><td class="stack-desc">Docker Compose + Nginx</td><td><span class="stack-badge free">Dockploy</span></td></tr>
+        <tr><td><span class="stack-name">Deploy</span></td><td class="stack-desc">Vercel / Dockploy</td><td><span class="stack-badge free">Cloud</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">$ neuraljira.tech — v1.0.0</div>
+  <p>Academia Web · NeuralJira · Colombia · 2026</p>
+</footer>
+
+<script>
+const lines = [
+  { type: 'prompt', text: 'docker compose up -d db' },
+  { type: 'out',    text: 'academia-db-1 ... done' },
+  { type: 'prompt', text: 'astro dev' },
+  { type: 'out',    text: '🪐  astro ready in 280ms' },
+  { type: 'out',    text: '  ➜ Local: http://localhost:4321/' },
+  { type: 'prompt', text: 'curl http://localhost:4321/login' },
+  { type: 'info',   text: 'Modo Demo disponible — sin DB' },
+  { type: 'prompt', text: 'echo "Curso Git Master: 7 lecciones interactivas"' },
+  { type: 'green',  text: '✓ Academia Web corriendo' },
+];
+const output = document.getElementById('terminal-output');
+let lineIdx = 0, charIdx = 0, currentEl = null;
+function colorClass(t) { return {prompt:'t-prompt',out:'t-out',info:'t-info',green:'t-out'}[t]||'t-cmd'; }
+function prefix(t) { return t==='prompt'?'$ ':'  '; }
+function typeNext() {
+  if(lineIdx>=lines.length){const c=document.createElement('span');c.className='terminal-line t-prompt';c.innerHTML='$ <span class="cursor"></span>';output.appendChild(c);return;}
+  const l=lines[lineIdx];
+  if(charIdx===0){currentEl=document.createElement('span');currentEl.className='terminal-line '+colorClass(l.type);currentEl.textContent=prefix(l.type);output.appendChild(currentEl);}
+  if(charIdx<l.text.length){currentEl.textContent=prefix(l.type)+l.text.slice(0,charIdx+1);charIdx++;setTimeout(typeNext,l.type==='prompt'?42:18);}
+  else{lineIdx++;charIdx=0;setTimeout(typeNext,l.type==='prompt'?320:180);}
+}
+window.addEventListener('load',()=>setTimeout(typeNext,800));
+const navToggle=document.getElementById('nav-toggle'),navLinks=document.getElementById('nav-links');
+if(navToggle&&navLinks){navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('mobile-open');navToggle.classList.toggle('open',o);});navLinks.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{navLinks.classList.remove('mobile-open');navToggle.classList.remove('open');});});}
+</script>
+</body>
+</html>

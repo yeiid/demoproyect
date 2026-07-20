@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuralJira Map Engine — NeuralJira Portfolio</title>
+<meta name="description" content="Motor de mapas geoespaciales como servicio. PostGIS + Martin + FastAPI para datos catastrales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">$ neuraljira.tech</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html">Portfolio</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#architecture">Arquitectura</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span></span> Map Engine · Map-as-a-Service</div>
+    <h1>Servicio de mapas<br><em>geoespaciales</em><br>de alto rendimiento</h1>
+    <p class="hero-sub">Sistema independiente de mapas para servir datos catastrales. PostGIS + Martin + FastAPI. Desplegable en Dokploy o cualquier entorno Docker.</p>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="terminal-title">~/map-engine · docker</span>
+      </div>
+      <div class="terminal-body" id="terminal-output"></div>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="index.html" class="btn-ghost">Volver al portfolio</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="features">
+  <div class="container">
+    <div class="section-label">// features</div>
+    <h2>Capacidades<br>del motor</h2>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <h4>🗺️ Vector Tiles MVT</h4>
+        <p>Martin renderiza tiles directamente desde PostGIS. Rendimiento optimizado con cache de 7 dias y gzip en protobuf.</p>
+      </div>
+      <div class="feat-card">
+        <h4>📥 Ingesta Masiva</h4>
+        <p>Importacion con ogr2ogr + PG_USE_COPY. GPKG de 3GB en 8-15 min. Importacion incremental con hash MD5 por capa.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🎨 Estilos Dinamicos</h4>
+        <p>Style.json generado automaticamente desde las capas en PostGIS. Colores unicos por capa, 3D extrusiones desde zoom 13+.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🔐 Auth JWT</h4>
+        <p>Autenticacion completa. Panel admin con estadisticas, jobs de importacion y gestion de usuarios.</p>
+      </div>
+      <div class="feat-card">
+        <h4>⚡ Optimizado</h4>
+        <p>Pool de conexiones SQLAlchemy, cache de style.json con TTL, COUNT por pg_stat, track_usage en memoria.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🌐 API REST</h4>
+        <p>Endpoints para config, layers, auth, admin. Vista publica sin autenticacion para compartir mapas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="architecture">
+  <div class="container">
+    <div class="section-label">// arquitectura</div>
+    <h2>Stack<br>tecnico</h2>
+
+    <div class="feat-grid" style="margin-bottom:3rem;">
+      <div class="feat-card" style="border-left:3px solid var(--green);">
+        <h4>🗄️ PostgreSQL + PostGIS</h4>
+        <p>Base de datos espacial con indices GIST. Optimizada para tiles protobuf y consultas geoespaciales.</p>
+      </div>
+      <div class="feat-card" style="border-left:3px solid var(--electric);">
+        <h4>🗺️ Martin Tile Server</h4>
+        <p>Servidor de Vector Tiles MVT que lee directo de PostGIS. Sin cache intermedio, datos siempre frescos.</p>
+      </div>
+      <div class="feat-card" style="border-left:3px solid var(--accent);">
+        <h4>⚡ FastAPI Manager</h4>
+        <p>API para estilos dinamicos, auth, ingesta de datos y jobs asincronos. Python 3.11 + SQLAlchemy.</p>
+      </div>
+      <div class="feat-card" style="border-left:3px solid var(--purple);">
+        <h4>🔀 Nginx Gateway</h4>
+        <p>Reverse proxy con gzip para tiles protobuf, CORS, cache de tiles 7 dias y compresion.</p>
+      </div>
+    </div>
+
+    <table class="stack-table">
+      <thead><tr><th>Servicio</th><th>Imagen</th><th>Puerto</th></tr></thead>
+      <tbody>
+        <tr><td><span class="stack-name">db</span></td><td class="stack-desc">postgis/postgis:15-3.4</td><td><span class="stack-badge free">5433</span></td></tr>
+        <tr><td><span class="stack-name">tiles</span></td><td class="stack-desc">maplibre/martin:latest</td><td><span class="stack-badge free">3000</span></td></tr>
+        <tr><td><span class="stack-name">manager</span></td><td class="stack-desc">python:3.11-slim (FastAPI)</td><td><span class="stack-badge free">8000</span></td></tr>
+        <tr><td><span class="stack-name">gateway</span></td><td class="stack-desc">nginx:alpine</td><td><span class="stack-badge free">80</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="container">
+    <div class="section-label">// rendimiento</div>
+    <h2>Resultados<br>de optimizacion</h2>
+
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-label">Import GPKG 3GB</div>
+        <div class="metric-val">8-15 <span>min</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Listar capas</div>
+        <div class="metric-val">&lt;50 <span>ms</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Style.json</div>
+        <div class="metric-val">&lt;10 <span>ms</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">RAM importacion</div>
+        <div class="metric-val">1-2 <span>GB</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">$ neuraljira.tech — v1.0.0</div>
+  <p>NeuralJira Map Engine · NeuralJira · Colombia · 2026</p>
+</footer>
+
+<script>
+const lines = [
+  { type: 'prompt', text: 'docker compose up -d' },
+  { type: 'out',    text: 'mapengine-db       ... done' },
+  { type: 'out',    text: 'mapengine-tiles    ... done' },
+  { type: 'out',    text: 'mapengine-manager  ... done' },
+  { type: 'out',    text: 'mapengine-gateway  ... done' },
+  { type: 'prompt', text: 'curl http://localhost/api/v1/layers | jq .count' },
+  { type: 'info',   text: '9 capas cargadas desde PostGIS' },
+  { type: 'prompt', text: 'echo "Map Engine listo en http://localhost"' },
+  { type: 'green',  text: '✓ Servicio de mapas geoespaciales corriendo' },
+];
+const output = document.getElementById('terminal-output');
+let lineIdx = 0, charIdx = 0, currentEl = null;
+function colorClass(t) { return {prompt:'t-prompt',out:'t-out',info:'t-info',green:'t-out'}[t]||'t-cmd'; }
+function prefix(t) { return t==='prompt'?'$ ':'  '; }
+function typeNext() {
+  if(lineIdx>=lines.length){const c=document.createElement('span');c.className='terminal-line t-prompt';c.innerHTML='$ <span class="cursor"></span>';output.appendChild(c);return;}
+  const l=lines[lineIdx];
+  if(charIdx===0){currentEl=document.createElement('span');currentEl.className='terminal-line '+colorClass(l.type);currentEl.textContent=prefix(l.type);output.appendChild(currentEl);}
+  if(charIdx<l.text.length){currentEl.textContent=prefix(l.type)+l.text.slice(0,charIdx+1);charIdx++;setTimeout(typeNext,l.type==='prompt'?42:18);}
+  else{lineIdx++;charIdx=0;setTimeout(typeNext,l.type==='prompt'?320:180);}
+}
+window.addEventListener('load',()=>setTimeout(typeNext,800));
+const navToggle=document.getElementById('nav-toggle'),navLinks=document.getElementById('nav-links');
+if(navToggle&&navLinks){navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('mobile-open');navToggle.classList.toggle('open',o);});navLinks.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{navLinks.classList.remove('mobile-open');navToggle.classList.remove('open');});});}
+</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Constructor 3D — NeuralJira Portfolio</title>
+<meta name="description" content="Editor interactivo de edificios 3D realistas. Exporta a OBJ, GeoJSON y sentencias SQL para PostGIS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">$ neuraljira.tech</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html">Portfolio</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#stack">Stack</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span></span> Constructor 3D · Herramienta</div>
+    <h1>Editor de<br><em>edificios 3D</em><br>realistas</h1>
+    <p class="hero-sub">Disena edificios en tiempo real con Three.js. Exporta a OBJ, GeoJSON y sentencias SQL para integrar al Map Engine de PostGIS.</p>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="terminal-title">~/constructor-3d · three.js</span>
+      </div>
+      <div class="terminal-body" id="terminal-output"></div>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="index.html" class="btn-ghost">Volver al portfolio</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="features">
+  <div class="container">
+    <div class="section-label">// features</div>
+    <h2>Capacidades<br>del editor</h2>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <h4>🏗️ Editor 3D Interactivo</h4>
+        <p>Disena edificios en tiempo real controlando dimensiones, pisos, altura de planta y colores con sliders.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🏠 Techos Avanzados</h4>
+        <p>Planos, a dos aguas (gable), a cuatro aguas (hip), piramidales y mansardas. Detalles arquitectonicos realistas.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🗺️ Mapa Integrado</h4>
+        <p>MapLibre GL para ubicar edificios en coordenadas reales. Vista previa 3D sobre el mapa.</p>
+      </div>
+      <div class="feat-card">
+        <h4>📦 Export Multiple</h4>
+        <p>OBJ para Blender/SketchUp, GeoJSON estandar, INSERT SQL para PostGIS con geometrias WKT 3D.</p>
+      </div>
+      <div class="feat-card">
+        <h4>🏗️ Multi-Seccion</h4>
+        <p>Cuerpos multiples: cuerpo principal, torre adjunta, garaje lateral. Composicion de estructuras complejas.</p>
+      </div>
+      <div class="feat-card">
+        <h4>✨ Detalles Realistas</h4>
+        <p>Puertas, ventanas en fachadas, columnas decorativas. Rejillas de ventanas brillantes automaticas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="stack">
+  <div class="container">
+    <div class="section-label">// stack</div>
+    <h2>Tecnologias</h2>
+
+    <table class="stack-table">
+      <thead><tr><th>Capa</th><th>Tecnologia</th><th>Detalle</th></tr></thead>
+      <tbody>
+        <tr><td><span class="stack-name">Motor 3D</span></td><td class="stack-desc">Three.js</td><td><span class="stack-badge free">WebGL</span></td></tr>
+        <tr><td><span class="stack-name">Mapa</span></td><td class="stack-desc">MapLibre GL JS</td><td><span class="stack-badge free">Vtiles</span></td></tr>
+        <tr><td><span class="stack-name">Frontend</span></td><td class="stack-desc">HTML + CSS + JS vanilla</td><td><span class="stack-badge free">Sin framework</span></td></tr>
+        <tr><td><span class="stack-name">Export</span></td><td class="stack-desc">OBJ / GeoJSON / SQL</td><td><span class="stack-badge free">3 formatos</span></td></tr>
+        <tr><td><span class="stack-name">Estilo</span></td><td class="stack-desc">Cyberpunk Glassmorphic</td><td><span class="stack-badge free">Premium</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">$ neuraljira.tech — v1.0.0</div>
+  <p>Constructor 3D · NeuralJira · Colombia · 2026</p>
+</footer>
+
+<script>
+const lines = [
+  { type: 'prompt', text: 'python3 -m http.server 8000' },
+  { type: 'out',    text: 'Serving HTTP on 0.0.0.0 port 8000 ...' },
+  { type: 'prompt', text: 'open http://localhost:8000' },
+  { type: 'info',   text: 'Editor 3D cargado — Three.js + MapLibre' },
+  { type: 'prompt', text: 'export "edificio.obj" -> Blender' },
+  { type: 'out',    text: '  12 secciones · 4 techos · 48 ventanas' },
+  { type: 'prompt', text: 'export "edificio.sql" -> PostGIS' },
+  { type: 'green',  text: '✓ 3 formatos de exportacion listos' },
+];
+const output = document.getElementById('terminal-output');
+let lineIdx = 0, charIdx = 0, currentEl = null;
+function colorClass(t) { return {prompt:'t-prompt',out:'t-out',info:'t-info',green:'t-out'}[t]||'t-cmd'; }
+function prefix(t) { return t==='prompt'?'$ ':'  '; }
+function typeNext() {
+  if(lineIdx>=lines.length){const c=document.createElement('span');c.className='terminal-line t-prompt';c.innerHTML='$ <span class="cursor"></span>';output.appendChild(c);return;}
+  const l=lines[lineIdx];
+  if(charIdx===0){currentEl=document.createElement('span');currentEl.className='terminal-line '+colorClass(l.type);currentEl.textContent=prefix(l.type);output.appendChild(currentEl);}
+  if(charIdx<l.text.length){currentEl.textContent=prefix(l.type)+l.text.slice(0,charIdx+1);charIdx++;setTimeout(typeNext,l.type==='prompt'?42:18);}
+  else{lineIdx++;charIdx=0;setTimeout(typeNext,l.type==='prompt'?320:180);}
+}
+window.addEventListener('load',()=>setTimeout(typeNext,800));
+const navToggle=document.getElementById('nav-toggle'),navLinks=document.getElementById('nav-links');
+if(navToggle&&navLinks){navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('mobile-open');navToggle.classList.toggle('open',o);});navLinks.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{navLinks.classList.remove('mobile-open');navToggle.classList.remove('open');});});}
+</script>
+</body>
+</html>
