@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing & Propuesta de Valor — NeuralJira</title>
+<meta name="description" content="Descubre cómo NeuralJira resuelve problemas reales con software SaaS, mapas geoespaciales y visualización 3D. Propuesta de valor para empresas colombianas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ── MARKETING EXTRAS ── */
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.value-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+.value-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.4);
+  border-color: rgba(249,115,22,.35);
+}
+.value-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--electric));
+  opacity: 0;
+  transition: opacity .25s;
+}
+.value-card:hover::before { opacity: 1; }
+.value-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+.value-title {
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--white); margin-bottom: .5rem;
+}
+.value-desc { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+
+.icp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+.icp-card {
+  background: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex; flex-direction: column; gap: .6rem;
+}
+.icp-label {
+  font-family: var(--font-mono); font-size: .68rem;
+  color: var(--accent); letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.icp-name { font-size: 1rem; font-weight: 700; color: var(--white); }
+.icp-pain { font-size: .84rem; color: var(--muted); line-height: 1.55; }
+.icp-solve {
+  font-size: .82rem; color: var(--green);
+  font-family: var(--font-mono);
+  margin-top: .3rem;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.pricing-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform .25s, border-color .25s;
+}
+.pricing-card.featured {
+  border-color: rgba(249,115,22,.5);
+  background: linear-gradient(135deg, rgba(249,115,22,.05), rgba(56,189,248,.04));
+}
+.pricing-card:hover { transform: translateY(-4px); }
+.plan-name {
+  font-family: var(--font-mono); font-size: .72rem;
+  color: var(--muted); letter-spacing: .12em;
+  text-transform: uppercase; margin-bottom: .8rem;
+}
+.plan-price {
+  font-size: 2.4rem; font-weight: 700;
+  color: var(--white); line-height: 1;
+}
+.plan-price span { font-size: .8rem; color: var(--muted); font-weight: 400; }
+.plan-desc { font-size: .85rem; color: var(--muted); margin: 1rem 0 1.5rem; line-height: 1.55; }
+.plan-features { list-style: none; text-align: left; }
+.plan-features li {
+  font-size: .84rem; color: var(--text);
+  padding: .4rem 0;
+  border-bottom: 1px solid rgba(37,46,66,.6);
+  display: flex; align-items: center; gap: .5rem;
+}
+.plan-features li::before { content: '✓'; color: var(--green); font-weight: 700; }
+
+.objection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+.objection-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+.objection-q {
+  font-size: .9rem; font-weight: 600;
+  color: var(--red); margin-bottom: .7rem;
+}
+.objection-a { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+.objection-a strong { color: var(--white); }
+
+.cta-box {
+  background: linear-gradient(135deg, rgba(249,115,22,.1), rgba(56,189,248,.06));
+  border: 1px solid rgba(249,115,22,.3);
+  border-radius: 12px;
+  padding: 3.5rem 2rem;
+  text-align: center;
+}
+.cta-box h2 { margin-bottom: 1rem; }
+.cta-box p { font-size: 1.05rem; color: var(--muted); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.65; }
+.cta-box .hero-ctas { justify-content: center; }
+
+.badge-featured {
+  background: var(--accent);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  padding: .2rem .6rem;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.impact-row {
+  display: flex; flex-wrap: wrap; gap: 2rem;
+  align-items: center; justify-content: center;
+  margin-top: 3rem;
+}
+.impact-item { text-align: center; }
+.impact-num {
+  font-size: 3rem; font-weight: 700;
+  color: var(--accent); line-height: 1;
+}
+.impact-lbl {
+  font-family: var(--font-mono); font-size: .72rem;
+  color: var(--muted); letter-spacing: .08em;
+  text-transform: uppercase; margin-top: .3rem;
+}
+
+.process-list {
+  display: flex; flex-direction: column; gap: 0;
+  max-width: 700px; margin: 2rem auto 0;
+}
+.process-step {
+  display: flex; gap: 1.5rem; align-items: flex-start;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.process-step:last-child { border-bottom: none; }
+.step-num {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(249,115,22,.15);
+  border: 2px solid rgba(249,115,22,.4);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: .85rem;
+  font-weight: 700; color: var(--accent);
+}
+.step-content {}
+.step-title { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: .3rem; }
+.step-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">$ neuraljira.tech</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html">Portfolio</a></li>
+    <li><a href="#propuesta">Propuesta</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+    <li><a href="#precios">Precios</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#contacto">Contactar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span></span> NeuralJira · Marketing & Ventas</div>
+    <h1>Software real.<br><em>Resultados reales.</em><br>Para tu negocio.</h1>
+    <p class="hero-sub">No vendemos horas de desarrollo. Entregamos productos SaaS funcionales que resuelven el problema específico de tu empresa, desde el primer día.</p>
+
+    <div class="impact-row">
+      <div class="impact-item">
+        <div class="impact-num">8</div>
+        <div class="impact-lbl">Productos activos</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-num">4</div>
+        <div class="impact-lbl">Industrias</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-num">100%</div>
+        <div class="impact-lbl">Open source stack</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-num">$0</div>
+        <div class="impact-lbl">Licencias externas</div>
+      </div>
+    </div>
+
+    <div class="hero-ctas" style="margin-top:3rem;">
+      <a href="#contacto" class="btn-primary">Hablar con nosotros</a>
+      <a href="#propuesta" class="btn-ghost">Ver propuesta de valor</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROPUESTA DE VALOR -->
+<section id="propuesta">
+  <div class="container">
+    <div class="section-label">// propuesta de valor</div>
+    <h2>¿Por qué<br>NeuralJira?</h2>
+    <p class="section-lead">Construimos productos completos —no prototipos— usando el mismo stack que usan empresas globales, a precios accesibles para el mercado colombiano.</p>
+
+    <div class="value-grid">
+      <div class="value-card">
+        <span class="value-icon">⚡</span>
+        <div class="value-title">Entrega rápida, sin deuda técnica</div>
+        <div class="value-desc">FastAPI + Astro + Docker nos permite entregar MVPs funcionales en semanas, no meses. Arquitectura limpia desde el día uno.</div>
+      </div>
+      <div class="value-card">
+        <span class="value-icon">📡</span>
+        <div class="value-title">Especialistas en nicho técnico</div>
+        <div class="value-desc">Mapas geoespaciales (PostGIS, MapLibre), visualización 3D (Three.js), sistemas de licenciamiento, SaaS multi-tenant. Cosas que pocas agencias en Colombia hacen.</div>
+      </div>
+      <div class="value-card">
+        <span class="value-icon">🔒</span>
+        <div class="value-title">Tu data, tu servidor</div>
+        <div class="value-desc">Desplegamos en tu infraestructura con Docker. Sin dependencia de plataformas de terceros. Tus datos siempre bajo tu control.</div>
+      </div>
+      <div class="value-card">
+        <span class="value-icon">💡</span>
+        <div class="value-title">De prototipo a SaaS real</div>
+        <div class="value-desc">Tenemos 8 productos construidos que demuestran que podemos llevar tu idea desde cero hasta un producto con facturación recurrente.</div>
+      </div>
+      <div class="value-card">
+        <span class="value-icon">🌎</span>
+        <div class="value-title">Precio colombiano, calidad global</div>
+        <div class="value-desc">Mismo stack que startups de Silicon Valley. Precios pensados para el mercado colombiano y latinoamericano. La mejor relación costo-valor del mercado.</div>
+      </div>
+      <div class="value-card">
+        <span class="value-icon">🤝</span>
+        <div class="value-title">Soporte continuo incluido</div>
+        <div class="value-desc">No desaparecemos al entregar. Soporte, actualizaciones y mejoras continuas como parte del servicio. Somos tu equipo de tecnología.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CLIENTES IDEALES -->
+<section id="clientes" style="background:var(--deep);">
+  <div class="container">
+    <div class="section-label">// clientes ideales · ICP</div>
+    <h2>¿Tu empresa<br>encaja aquí?</h2>
+    <p class="section-lead">Trabajamos mejor con empresas que tienen un problema concreto que resolver con tecnología y quieren un socio técnico a largo plazo.</p>
+
+    <div class="icp-grid">
+      <div class="icp-card">
+        <div class="icp-label">Sector Telecom</div>
+        <div class="icp-name">🗺️ ISPs y proveedores FTTH</div>
+        <div class="icp-pain">Gestión de planta externa en Excel, sin trazabilidad de cables ni ubicaciones GPS.</div>
+        <div class="icp-solve">→ FTTH Mapper: mapa interactivo, GPS, empalmes</div>
+      </div>
+      <div class="icp-card">
+        <div class="icp-label">Logística & Distribución</div>
+        <div class="icp-name">📦 Bodegas y distribuidoras</div>
+        <div class="icp-pain">Inventarios en hojas de cálculo, sin visibilidad espacial ni control de movimientos.</div>
+        <div class="icp-solve">→ InventarioADN: bodega 3D + multi-tenant</div>
+      </div>
+      <div class="icp-card">
+        <div class="icp-label">Fitness & Bienestar</div>
+        <div class="icp-name">🏋️ Cadenas de gimnasios</div>
+        <div class="icp-pain">Control de miembros manual, sin sistema de licencias ni métricas consolidadas.</div>
+        <div class="icp-solve">→ GymTrack: membresías + licenciamiento Ed25519</div>
+      </div>
+      <div class="icp-card">
+        <div class="icp-label">Catastro & Gobierno</div>
+        <div class="icp-name">🏢 Empresas de construcción</div>
+        <div class="icp-pain">Sin herramientas para visualizar, exportar o gestionar edificios y terrenos en 3D.</div>
+        <div class="icp-solve">→ Constructor 3D + Map Engine: PostGIS + OBJ</div>
+      </div>
+      <div class="icp-card">
+        <div class="icp-label">Salud & Educación</div>
+        <div class="icp-name">🎓 Academias y coaches</div>
+        <div class="icp-pain">Planes personalizados gestionados manualmente sin seguimiento de progreso digital.</div>
+        <div class="icp-solve">→ FabbyTRACK + Academia Web: SaaS listo</div>
+      </div>
+      <div class="icp-card">
+        <div class="icp-label">Cualquier sector</div>
+        <div class="icp-name">⚡ Startups y negocios digitales</div>
+        <div class="icp-pain">Tienes una idea de producto SaaS pero no tienes equipo técnico para construirla.</div>
+        <div class="icp-solve">→ NeuralJira: del MVP al primer cliente</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PRECIOS -->
+<section id="precios">
+  <div class="container">
+    <div class="section-label">// precios · transparentes</div>
+    <h2>Modelos de<br>trabajo</h2>
+    <p class="section-lead">Sin sorpresas. Elige el modelo que mejor encaja con tu etapa y presupuesto.</p>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="plan-name">Proyecto cerrado</div>
+        <div class="plan-price">Desde $3M <span>COP</span></div>
+        <div class="plan-desc">Entregable definido, precio fijo. Ideal para módulos concretos o MVPs con alcance claro.</div>
+        <ul class="plan-features">
+          <li>Análisis de requerimientos</li>
+          <li>Diseño + desarrollo</li>
+          <li>Deploy en tu servidor</li>
+          <li>30 días de soporte post-entrega</li>
+          <li>Código fuente incluido</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="badge-featured">★ MÁS POPULAR</div>
+        <div class="plan-name">Socio técnico mensual</div>
+        <div class="plan-price">$2M <span>COP/mes</span></div>
+        <div class="plan-desc">Somos tu equipo de tecnología. Desarrollo continuo, soporte, nuevas funcionalidades cada sprint.</div>
+        <ul class="plan-features">
+          <li>80+ horas de desarrollo/mes</li>
+          <li>Reuniones semanales de sprint</li>
+          <li>Deploy + mantenimiento</li>
+          <li>Prioridad de soporte</li>
+          <li>Actualizaciones continuas</li>
+          <li>Documentación técnica</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <div class="plan-name">SaaS listo</div>
+        <div class="plan-price">Desde $500k <span>COP/mes</span></div>
+        <div class="plan-desc">Accede directamente a nuestros productos (GymTrack, InventarioADN, FTTH Mapper) como suscripción.</div>
+        <ul class="plan-features">
+          <li>Producto funcional desde día 1</li>
+          <li>Configuración para tu empresa</li>
+          <li>Soporte incluido</li>
+          <li>Actualizaciones automáticas</li>
+          <li>Sin costo de desarrollo inicial</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- OBJECIONES -->
+<section style="background:var(--deep);">
+  <div class="container">
+    <div class="section-label">// objeciones comunes</div>
+    <h2>Lo que te estás<br>preguntando</h2>
+
+    <div class="objection-grid">
+      <div class="objection-card">
+        <div class="objection-q">❓ ¿Y si necesito cambios después?</div>
+        <div class="objection-a">El modelo de socio técnico está diseñado para eso. <strong>El software evoluciona contigo</strong>. Nunca quedas atrapado con una versión estática.</div>
+      </div>
+      <div class="objection-card">
+        <div class="objection-q">❓ ¿Me dan el código fuente?</div>
+        <div class="objection-a">Sí, siempre. <strong>Tu código es tuyo</strong>. No usamos estrategias de lock-in. Puedes llevarte el proyecto cuando quieras.</div>
+      </div>
+      <div class="objection-card">
+        <div class="objection-q">❓ ¿Cómo sé que pueden entregar?</div>
+        <div class="objection-a">Tenemos <strong>8 productos en producción</strong> para demostrarte. FTTH Mapper, InventarioADN y GymTrack son sistemas reales, no prototipos.</div>
+      </div>
+      <div class="objection-card">
+        <div class="objection-q">❓ ¿Trabajan con empresas pequeñas?</div>
+        <div class="objection-a">Sí. Nuestros precios están pensados para el mercado colombiano. <strong>El plan SaaS listo empieza en $500k/mes</strong>, accesible para pymes.</div>
+      </div>
+      <div class="objection-card">
+        <div class="objection-q">❓ ¿Qué pasa si el proyecto falla?</div>
+        <div class="objection-a">Trabajamos por sprints con <strong>entregables validados cada semana</strong>. Sabes exactamente qué se construye antes de pagar el siguiente sprint.</div>
+      </div>
+      <div class="objection-card">
+        <div class="objection-q">❓ ¿Puedo probar antes de contratar?</div>
+        <div class="objection-a">Ofrecemos una <strong>consultoría gratuita de 1 hora</strong> para analizar tu problema y presentar una propuesta concreta sin compromiso.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="container">
+    <div class="section-label">// proceso de trabajo</div>
+    <h2>De tu problema<br>a tu producto</h2>
+    <p class="section-lead">Un proceso simple, transparente y orientado a resultados.</p>
+
+    <div class="process-list">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">Consultoría gratuita (1h)</div>
+          <div class="step-desc">Escuchamos tu problema, analizamos si tenemos un producto existente que encaje o si necesitamos construir algo a medida.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">Propuesta técnica en 48h</div>
+          <div class="step-desc">Documento con stack, alcance, tiempos y precio. Sin sorpresas. Todo por escrito antes de firmar.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">Sprint 1 — MVP funcional</div>
+          <div class="step-desc">En 2-4 semanas tienes un producto funcionando que puedes mostrar, probar y validar con usuarios reales.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <div class="step-title">Deploy en producción</div>
+          <div class="step-desc">Configuramos Docker, Nginx y tu dominio. Tu producto live en internet, listo para el primer cliente.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <div class="step-title">Iteración continua</div>
+          <div class="step-desc">Sprints quincenales con nuevas funcionalidades basadas en feedback real. Tu producto mejora cada semana.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CTA FINAL -->
+<section id="contacto">
+  <div class="container">
+    <div class="cta-box">
+      <div class="section-label" style="margin-bottom:1rem;">// hablemos</div>
+      <h2>¿Tienes un problema<br>que <em>resolver</em>?</h2>
+      <p>Una consultoría gratuita de 1 hora. Sin compromiso. Si no vemos fit, te decimos honestamente qué necesitas y con quién hablar.</p>
+      <div class="hero-ctas">
+        <a href="mailto:contacto@neuraljira.tech?subject=Quiero una consultoría gratuita" class="btn-primary">📧 Agendar consultoría gratis</a>
+        <a href="https://neuraljira.tech" class="btn-ghost" target="_blank">Ver neuraljira.tech</a>
+      </div>
+      <div style="margin-top:2rem; font-family:var(--font-mono); font-size:.78rem; color:var(--muted);">
+        contacto@neuraljira.tech · Colombia · Remoto
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">$ neuraljira.tech — marketing v1.0</div>
+  <p>NeuralJira · neuraljira.tech · Colombia · 2026</p>
+</footer>
+
+<script>
+const navToggle = document.getElementById('nav-toggle');
+const navLinks  = document.getElementById('nav-links');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    const o = navLinks.classList.toggle('mobile-open');
+    navToggle.classList.toggle('open', o);
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('mobile-open');
+      navToggle.classList.remove('open');
+    });
+  });
+}
+
+// Animate numbers
+const nums = document.querySelectorAll('.impact-num');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.value-card, .icp-card, .pricing-card, .objection-card, .process-step').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>

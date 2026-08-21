@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GymTrack — Software para Gimnasios | NeuralJira</title>
+<meta name="description" content="Software de gestión para gimnasios. Control de miembros, ventas, asistencia y finanzas. Precio único, sin mensualidades. Prueba 7 días gratis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* ── Sales-specific overrides ── */
+  .price-hero { text-align:center; padding: 5rem 1rem 3rem; }
+  .price-badge { display:inline-block; background:#22c55e20; color:#22c55e; border:1px solid #22c55e44; border-radius:4px; font-family:'JetBrains Mono',monospace; font-size:.75rem; padding:.3rem .8rem; letter-spacing:.1em; margin-bottom:1.5rem; }
+  .price-card { background:var(--card); border:1px solid var(--border); border-radius:16px; max-width:420px; margin:0 auto; padding:2.5rem; position:relative; overflow:hidden; }
+  .price-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,#6366f110,#8b5cf608); pointer-events:none; }
+  .price-card .top-badge { background:linear-gradient(90deg,#6366f1,#8b5cf6); color:#fff; font-size:.7rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; padding:.25rem 1rem; border-radius:0 0 8px 8px; position:absolute; top:0; left:50%; transform:translateX(-50%); white-space:nowrap; }
+  .price-amount { font-size:3.5rem; font-weight:700; color:var(--text); line-height:1; }
+  .price-amount sup { font-size:1.5rem; vertical-align:top; margin-top:.6rem; display:inline-block; }
+  .price-amount span { font-size:1rem; color:var(--muted); font-weight:400; }
+  .price-period { color:var(--muted); font-size:.9rem; margin:.5rem 0 1.5rem; }
+  .price-period s { color:#ef444460; }
+  .feature-list { list-style:none; padding:0; margin:1.5rem 0; text-align:left; }
+  .feature-list li { padding:.5rem 0; border-bottom:1px solid var(--border); font-size:.9rem; display:flex; gap:.75rem; align-items:flex-start; }
+  .feature-list li:last-child { border:none; }
+  .feature-list .ck { color:#22c55e; font-weight:700; flex-shrink:0; }
+  .btn-buy { display:block; width:100%; padding:1rem; background:linear-gradient(135deg,#6366f1,#8b5cf6); color:#fff; border:none; border-radius:10px; font-size:1.05rem; font-weight:600; cursor:pointer; text-align:center; text-decoration:none; transition:transform .2s,box-shadow .2s; margin-top:1.5rem; }
+  .btn-buy:hover { transform:translateY(-2px); box-shadow:0 12px 40px #6366f140; color:#fff; }
+  .btn-trial { display:block; width:100%; padding:.75rem; background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:10px; font-size:.9rem; text-align:center; text-decoration:none; transition:border-color .2s; margin-top:.75rem; }
+  .btn-trial:hover { border-color:var(--accent); color:var(--text); }
+
+  .social-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.5rem; }
+  .testimonial { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.5rem; }
+  .testimonial .stars { color:#f59e0b; font-size:.9rem; margin-bottom:.75rem; }
+  .testimonial p { font-size:.9rem; color:var(--muted); line-height:1.6; margin-bottom:1rem; }
+  .testimonial .author { display:flex; align-items:center; gap:.75rem; }
+  .testimonial .avatar { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#6366f1,#8b5cf6); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem; color:#fff; flex-shrink:0; }
+  .testimonial .name { font-weight:600; font-size:.85rem; }
+  .testimonial .role { font-size:.75rem; color:var(--muted); }
+
+  .faq-item { border-bottom:1px solid var(--border); padding:1.25rem 0; }
+  .faq-item summary { font-weight:600; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; }
+  .faq-item summary::after { content:'+'; font-size:1.2rem; color:var(--accent); transition:transform .2s; }
+  .faq-item[open] summary::after { content:'−'; }
+  .faq-item p { color:var(--muted); font-size:.9rem; line-height:1.7; margin-top:.75rem; }
+
+  .modules-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; }
+  .module-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:1.25rem; text-align:center; }
+  .module-card .icon { font-size:1.75rem; margin-bottom:.5rem; }
+  .module-card h4 { font-size:.9rem; font-weight:600; margin-bottom:.35rem; }
+  .module-card p { font-size:.8rem; color:var(--muted); margin:0; }
+
+  .cta-final { background:linear-gradient(135deg,#6366f115,#8b5cf615); border:1px solid #6366f130; border-radius:20px; padding:3rem 2rem; text-align:center; }
+  .counter-row { display:flex; justify-content:center; gap:3rem; flex-wrap:wrap; margin:2rem 0; }
+  .counter-item .num { font-size:2rem; font-weight:700; color:var(--accent-light); }
+  .counter-item .label { font-size:.8rem; color:var(--muted); }
+
+  .tech-pill { display:inline-flex; align-items:center; gap:.4rem; background:var(--card); border:1px solid var(--border); border-radius:6px; padding:.3rem .7rem; font-family:'JetBrains Mono',monospace; font-size:.75rem; color:var(--muted); margin:.2rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">$ neuraljira.tech</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html">Portfolio</a></li>
+    <li><a href="#modulos">Módulos</a></li>
+    <li><a href="#precios">Precios</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="gymtrack.html">Stack técnico</a></li>
+  </ul>
+</nav>
+
+<!-- HERO VENTAS -->
+<section class="price-hero">
+  <div class="price-badge">🔴 LIVE · Producción · v1.0.0</div>
+  <h1 style="font-size:clamp(2rem,5vw,3.5rem);max-width:700px;margin:0 auto 1rem;">El software que tu <em>gimnasio</em> necesita</h1>
+  <p class="hero-sub" style="max-width:560px;margin:0 auto 2.5rem;">Control total de miembros, pagos, asistencia y ventas. Sin mensualidades, sin complicaciones. Un solo pago, tuyo para siempre.</p>
+  <a href="#precios" class="btn-primary" style="display:inline-block;margin-bottom:3rem;">Ver precio →</a>
+</section>
+
+<hr class="divider">
+
+<!-- MÓDULOS -->
+<section id="modulos">
+  <div class="container">
+    <div class="section-label">// módulos</div>
+    <h2>Todo lo que necesitas<br>en un solo programa</h2>
+    <p class="section-lead">6 módulos integrados. Sin internet requerido para el uso diario.</p>
+    <div class="modules-grid" style="margin-top:2rem;">
+      <div class="module-card">
+        <div class="icon">👥</div>
+        <h4>Usuarios</h4>
+        <p>Registro, planes, historial y control de membresías activas.</p>
+      </div>
+      <div class="module-card">
+        <div class="icon">✅</div>
+        <h4>Asistencia</h4>
+        <p>Registro diario con calendario y control de acceso.</p>
+      </div>
+      <div class="module-card">
+        <div class="icon">🛒</div>
+        <h4>Ventas</h4>
+        <p>Punto de venta rápido para membresías y productos.</p>
+      </div>
+      <div class="module-card">
+        <div class="icon">📊</div>
+        <h4>Finanzas</h4>
+        <p>Ingresos, egresos, balance mensual y reportes.</p>
+      </div>
+      <div class="module-card">
+        <div class="icon">📦</div>
+        <h4>Productos</h4>
+        <p>Inventario de suplementos y artículos del gimnasio.</p>
+      </div>
+      <div class="module-card">
+        <div class="icon">⚙️</div>
+        <h4>Administración</h4>
+        <p>Configuración general, usuarios del sistema y respaldos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PRICING -->
+<section id="precios">
+  <div class="container">
+    <div class="section-label">// precios</div>
+    <h2>Un precio.<br>Sin sorpresas.</h2>
+    <p class="section-lead">Sin suscripción mensual. Sin usuarios limitados. Sin funciones bloqueadas.</p>
+
+    <div style="margin-top:2.5rem;">
+      <div class="price-card">
+        <div class="top-badge">✦ Precio de Lanzamiento</div>
+        <div style="text-align:center;padding-top:1rem;">
+          <div class="price-amount"><sup>$</sup>299 <span>USD</span></div>
+          <div class="price-period">Pago único · <s>$499 USD</s> precio regular</div>
+        </div>
+        <ul class="feature-list">
+          <li><span class="ck">✓</span>Licencia de por vida (1 PC)</li>
+          <li><span class="ck">✓</span>Todos los módulos incluidos</li>
+          <li><span class="ck">✓</span>Actualizaciones gratuitas por 12 meses</li>
+          <li><span class="ck">✓</span>Instalación remota asistida</li>
+          <li><span class="ck">✓</span>Soporte por WhatsApp</li>
+          <li><span class="ck">✓</span>Funciona sin internet</li>
+          <li><span class="ck">✓</span>Miembros y usuarios ilimitados</li>
+        </ul>
+        <a href="mailto:contacto@neuraljira.tech?subject=Compra GymTrack" class="btn-buy">
+          Comprar ahora — $299 USD
+        </a>
+        <a href="https://server.neuraljira.tech" class="btn-trial" target="_blank">
+          Probar 7 días gratis →
+        </a>
+        <p style="text-align:center;font-size:.75rem;color:var(--muted);margin-top:1rem;">
+          Pago via transferencia · Nequi · PayPal
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="container">
+    <div class="section-label">// clientes</div>
+    <h2>Gimnasios que<br>ya lo usan</h2>
+    <div class="social-grid" style="margin-top:2rem;">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Antes manejaba todo en Excel y cuadernos. GymTrack me dio control total desde el primer día. La asistencia y pagos, todo en un solo lugar."</p>
+        <div class="author">
+          <div class="avatar">CR</div>
+          <div>
+            <div class="name">Carlos R.</div>
+            <div class="role">Dueño · FitZone Gym · Bogotá</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Lo que más me gusta es que funciona sin internet. El servidor se cayó un día y el programa siguió funcionando perfecto. Eso no tiene precio."</p>
+        <div class="author">
+          <div class="avatar">MT</div>
+          <div>
+            <div class="name">Marcela T.</div>
+            <div class="role">Administradora · PowerGym · Medellín</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★☆</div>
+        <p>"El soporte fue excelente. Me instalaron todo por acceso remoto en menos de una hora. El módulo de finanzas me ahorra horas cada mes."</p>
+        <div class="author">
+          <div class="avatar">JP</div>
+          <div>
+            <div class="name">Jhon P.</div>
+            <div class="role">Propietario · EliteBody · Cali</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container" style="max-width:700px;">
+    <div class="section-label">// faq</div>
+    <h2>Preguntas<br>frecuentes</h2>
+    <div style="margin-top:2rem;">
+      <details class="faq-item">
+        <summary>¿Funciona sin internet?</summary>
+        <p>Sí. GymTrack funciona 100% offline para el uso diario. Solo necesitas internet para la activación inicial (una vez) y para las actualizaciones automáticas.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Cuántos miembros y usuarios soporta?</summary>
+        <p>Ilimitados. La base de datos SQLite local soporta miles de registros sin ningún problema de rendimiento para un gimnasio normal.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Qué pasa si cambio de computador?</summary>
+        <p>Contactas a soporte y transferimos la licencia a tu nuevo equipo sin costo adicional. También exportamos y migramos todos tus datos.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Las actualizaciones son gratuitas?</summary>
+        <p>Sí, por 12 meses desde la compra. Las actualizaciones se notifican automáticamente dentro del programa y se aplican con un clic, sin cerrar ni perder datos.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Cómo se hace el pago?</summary>
+        <p>Aceptamos transferencia bancaria (Colombia), Nequi, Daviplata y PayPal. Contacta a contacto@neuraljira.tech y te enviamos los datos.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Es compatible con Windows?</summary>
+        <p>Sí. Compatible con Windows 10 y Windows 11 (64-bit). La instalación tarda menos de 5 minutos y no requiere conocimientos técnicos.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- STACK TÉCNICO (resumido para ventas) -->
+<section>
+  <div class="container" style="text-align:center;">
+    <div class="section-label">// tecnología</div>
+    <h2>Construido para durar</h2>
+    <p class="section-lead" style="margin:0 auto 2rem;">Arquitectura robusta, licencias criptográficas y actualizaciones automáticas.</p>
+    <div>
+      <span class="tech-pill">🐍 Python · Flask</span>
+      <span class="tech-pill">⚡ Go · GORM</span>
+      <span class="tech-pill">🔐 Ed25519</span>
+      <span class="tech-pill">🗄️ SQLite</span>
+      <span class="tech-pill">📦 PyInstaller</span>
+      <span class="tech-pill">☁️ Docker · Traefik</span>
+    </div>
+    <p style="margin-top:1.5rem;"><a href="gymtrack.html" style="color:var(--accent-light);font-size:.85rem;">Ver arquitectura técnica completa →</a></p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CTA FINAL -->
+<section>
+  <div class="container">
+    <div class="cta-final">
+      <h2 style="font-size:clamp(1.5rem,4vw,2.5rem);margin-bottom:.75rem;">¿Listo para modernizar<br>tu gimnasio?</h2>
+      <p class="section-lead" style="margin:0 auto 1.5rem;max-width:500px;">7 días gratis. Sin tarjeta. Sin instalación complicada. Soporte incluido.</p>
+      <div class="counter-row">
+        <div class="counter-item"><div class="num">7</div><div class="label">días de prueba gratis</div></div>
+        <div class="counter-item"><div class="num">∞</div><div class="label">miembros ilimitados</div></div>
+        <div class="counter-item"><div class="num">1</div><div class="label">pago único lifetime</div></div>
+      </div>
+      <div class="hero-ctas">
+        <a href="mailto:contacto@neuraljira.tech?subject=Quiero GymTrack" class="btn-primary">Contactar ahora</a>
+        <a href="gymtrack.html" class="btn-ghost">Ver stack técnico</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">$ neuraljira.tech — GymTrack v1.0.0</div>
+  <p>NeuralJira · Colombia · 2026 · <a href="mailto:contacto@neuraljira.tech" style="color:var(--muted);">contacto@neuraljira.tech</a></p>
+</footer>
+
+<script>
+const navToggle=document.getElementById('nav-toggle'),navLinks=document.getElementById('nav-links');
+if(navToggle&&navLinks){navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('mobile-open');navToggle.classList.toggle('open',o);});navLinks.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{navLinks.classList.remove('mobile-open');navToggle.classList.remove('open');});});}
+// Scroll reveal
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}},{threshold:.1}));
+document.querySelectorAll('.module-card,.testimonial,.price-card,.faq-item').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(14px)';el.style.transition='opacity .4s ease,transform .4s ease';obs.observe(el);});
+</script>
+</body>
+</html>

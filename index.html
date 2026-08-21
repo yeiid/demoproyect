@@ -23,6 +23,7 @@
     <li><a href="#stats">Stack</a></li>
     <li><a href="brand-guide.html">Brand Guide</a></li>
     <li><a href="business-plan.html">Business Plan</a></li>
+    <li><a href="marketing.html">Marketing</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
 </nav>
@@ -102,15 +103,20 @@
       </a>
 
       <!-- GymTrack -->
-      <a href="gymtrack.html" class="proj-card">
+      <a href="gymtrack.html" class="proj-card" style="position:relative;">
+        <span style="position:absolute;top:.75rem;right:.75rem;background:#22c55e;color:#fff;font-size:.6rem;font-weight:700;letter-spacing:.12em;padding:.2rem .5rem;border-radius:4px;text-transform:uppercase;">🔴 LIVE</span>
         <span class="proj-icon">🏋️</span>
         <div class="proj-name">GymTrack SaaS</div>
-        <div class="proj-desc">Sistema de gestión de gimnasios con licenciamiento, panel admin y servidor de licencias en Go.</div>
+        <div class="proj-desc">Sistema de gestión de gimnasios con licenciamiento, panel admin y servidor de licencias en Go. En producción.</div>
         <div class="proj-tags">
-          <span class="tag green">SaaS</span>
+          <span class="tag green">En producción</span>
           <span class="tag">Flask</span>
           <span class="tag blue">Go</span>
-          <span class="tag">SQLite</span>
+          <span class="tag">Ed25519</span>
+        </div>
+        <div style="display:flex;gap:.5rem;margin-top:1rem;" onclick="event.preventDefault();">
+          <a href="gymtrack.html" style="flex:1;text-align:center;padding:.45rem;background:transparent;border:1px solid var(--border);border-radius:6px;font-size:.75rem;color:var(--muted);text-decoration:none;" onmouseover="this.style.borderColor='#6366f1'" onmouseout="this.style.borderColor='var(--border)'">Stack técnico</a>
+          <a href="gymtrack-sales.html" style="flex:1;text-align:center;padding:.45rem;background:linear-gradient(135deg,#6366f1,#8b5cf6);border:none;border-radius:6px;font-size:.75rem;color:#fff;text-decoration:none;font-weight:600;">Ver producto →</a>
         </div>
       </a>
 
